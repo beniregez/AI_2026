@@ -1,0 +1,96 @@
+%% General definitions
+\documentclass{article} %% Determines the general format.
+\usepackage{a4wide} %% paper size: A4.
+\usepackage[utf8]{inputenc} %% This file is written in UTF-8.
+%% Some editors on Windows cannot save files in UTF-8.
+%% If there is a problem with special characters not showing up
+%% correctly, try switching "utf8" to "latin1" (ISO 8859-1).
+\usepackage[T1]{fontenc} %% Format of the resulting PDF file.
+\usepackage{fancyhdr} %% Package to create a header on each page.
+\usepackage{lastpage} %% Used for "Page X of Y" in the header.
+                      %% For this to work, you have to call pdflatex twice.
+\usepackage{enumerate} %% Used to change the style of enumerations (see below).
+
+\usepackage{amssymb} %% Definitions for math symbols.
+\usepackage{amsmath} %% Definitions for math symbols.
+
+\usepackage{tikz}  %% Pagacke to create graphics (graphs, automata, etc.)
+\usetikzlibrary{automata} %% Tikz library to draw automata
+\usetikzlibrary{arrows}   %% Tikz library for nicer arrow heads
+
+
+%% Left side of header
+\lhead{\course\\\semester\\Exercise \homeworkNumber}
+%% Right side of header
+\rhead{\authorname\\Page \thepage\ of \pageref{LastPage}}
+%% Height of header
+\usepackage[headheight=36pt]{geometry}
+%% Page style that uses the header
+\pagestyle{fancy}
+
+\newcommand{\authorname}{Luis Tritschler\\Benjamin Regez}
+\newcommand{\semester}{Spring Semester 2026}
+\newcommand{\course}{Foundations of Artificial Intelligence}
+\newcommand{\homeworkNumber}{1}
+
+
+\begin{document}
+
+\section*{Statement on scientific integrity}
+Google Translate was used to assist in translating individual words from
+German to English when writing down the exercise solutions.\\
+Apart from that, we solved the entire exercise sheet on our own. 
+
+\section*{Exercise 1.1}
+
+\begin{enumerate}[(a)]
+    \item Pepper categorizes human emotions based on knowledge about facial
+    expressions and voice tones. This requires knowledge about how humans act,
+    therefore, Pepper belongs to the category of \texttt{acting humanly}.
+    \item AlphaGo decides the best move based on knowledge from games in the past,
+    both played by humans and computers. We would therefore argue that AlphaGo most
+    likely can be seen as an \texttt{acting rationally} agent, especially because choosing
+    moves with the greatest probatility of winning is a very rational decision.
+    \item ACT-R fits best into the group of \texttt{humanly thinking}, because it deals with
+    modeling human cognitive processes.
+    \item Google Maps (i.e., its route planning tool) can be categorized as
+    \texttt{rationally acting}, because it takes various factors into account, and
+    based on that, the fastest route is calculated.
+\end{enumerate}
+
+
+\section*{Exercise 1.2}
+
+\begin{enumerate}[(a)]
+    \item First of all, we note that "scenic" is not a completely objective feature.
+    Different people probably like different landscapes to varying degrees.
+    Based on that, there might be ratings from previous customers about the route
+    sections in a certain area. In such a scenario, the taxi might calculate the "most
+    scenic" route with the highest "scenic value" by relying on these ratings.
+    On the one hand, the taxi itself acts rationally, because it calculates the highest
+    possible value. But on the other hand, the rating is human-related, so that would
+    rather be \texttt{acting humanly}.
+    \item The described behaviour of ChatGPT most likely is \texttt{acting rationally}.
+    The reinforcement of human feedback has driven ChatGPT to more and more write in
+    this way. This type of text (language) also is used by ChatGPT if it is not
+    capable to give a substantive answer.
+\end{enumerate}
+
+
+\section*{Exercise 1.3}
+
+\begin{enumerate}[(a)]
+    \item The only possible yet very costly implementation that we could achieve is
+    the following:
+    For every step, check first all four directions. Then, among all non-blocked
+    directions, choose randomly a direction and go there. If the goal was reached, stop.
+    Else, check again and do next step.
+    The problem is that the agent cannot remember where it was already. Another issue
+    is that it cannot just follow a side (it does not "see" right and left).
+    \item No, there is no guarantee that the agent will always reach the goal in
+    finite many steps. Since the next step is always chosen randomly, it might end up never
+    reaching the goal.
+\end{enumerate}
+
+
+\end{document}
