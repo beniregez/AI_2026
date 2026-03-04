@@ -18,6 +18,7 @@
 \usetikzlibrary{automata} %% Tikz library to draw automata
 \usetikzlibrary{arrows}   %% Tikz library for nicer arrow heads
 
+\usepackage{hyperref} %% hyperlinks
 
 %% Left side of header
 \lhead{\course\\\semester\\Exercise \homeworkNumber}
@@ -39,6 +40,48 @@
 \begin{document}
 
 \section{}
+
+% Characterize the following environments by describing if they are
+% - static / dynamic,
+% - deterministic / non-deterministic / stochastic,
+% - fully / partially / not observable,
+% - discrete / continuous,
+% - single-agent / multi-agent
+% Explain your answers.
+
+\begin{enumerate}
+    \item Monopoly
+    \begin{itemize}
+        \item static: The environment stays the same during the agent
+        (i.e., the player) is contemplating its next action
+        \item stochastic: The resulting sum of two rolled dices
+        determine how many steps the active player moves forward
+        \item fully observable: The player sees the entire state
+        of the gameboard etc. To be precise, there are some cards
+        that, if drawn by a player, only the drawing player sees and
+        might keep for later use. In that case, for the other players
+        the environment is only partially observable, because they
+        don't see which card the other player has drawn.
+        \item discrete: Only discrete quantities determine the state
+        of the environment (the game), e.g. the amount of 
+        available money for each player, locations of game pieces
+        on the board, placed houses and hotels, event cards etc
+        are discrete numbers
+        \item multi-agent: Monopoly is a multiplayer game
+    \end{itemize}
+    \item Mars rover
+    \begin{itemize}
+        \item dynamic: The environment can change during the
+        contemplating phase of the rover
+        \item non-deterministic: The environment might always change,
+        for example weather conditions like temperature or wind changes
+        \item partially observable: Mars rovers can mesure a lot of
+        things, but they are not capable to observe or detect
+        microbes. That is, for them, the environment is not
+        fully observable.
+        \href{https://t3n.de/news/leben-mars-rover-sensoren-ungenau-1536159/}{Link to article}
+    \end{itemize}
+\end{enumerate}
 
 \section{}
 
