@@ -39,7 +39,7 @@
 
 \begin{document}
 
-\section{}
+\section{Characterizing environments}
 
 % Characterize the following environments by describing if they are
 % - static / dynamic,
@@ -83,9 +83,59 @@
     \end{itemize}
 \end{enumerate}
 
-\section{}
+\section{Evaluation of statements}
+\begin{enumerate}[(a)]
+    \item \textit{If all actions have cost 0, each solution for S is
+    optimal.}\\
+    \textbf{True}. In this case, each solution has minimal cost, and therefore
+    is optimal.
+    \item \textit{If $\pi = \langle a_1, ... , a_n \rangle $ is a
+    minimal cost path from state $s \in S$ to state $s' \in S$ and
+    $\pi' = \langle a'_1, . . . , a'_m \rangle$ is a minimal cost
+    path from $s'$ to state $s'' \in S$, then $\pi'' = \langle a_1,
+    ... , a_n, a'_1, ... , a'_m \rangle$ is a minimal cost path
+    from $s$ to $s''$.}\\
+    \textbf{False}. There might exist another path from $s$ to $s''$ with less cost
+    than $\pi''$.
+    \item \textit{It is possible for unit-cost state spaces (where all
+    actions have cost 1) that some state has the same optimal solution
+    cost as one of its successors.}\\
+    \textbf{True}. Let's think of a unit-cost set space where $s_1 \in S$ and
+    $s_2 \in S$.
+    Further, we assume that there is an arc from $s_1$ to $s_2$.
+    Addititonally, there exists arcs from the initial state to $s_1$ as well
+    as $s_2$.
+    Then, the cost from the initial state to $s_1$ and to $s_2$ is 1,
+    thus both minimal solutions.
+    At the same time, $s_2$ is a successor of $s_1$.
+    \item \textit{If there is no solution for some state, then there is
+    no solution for any of its predecessors.}\\
+    \textbf{False}. If a state has no solution, there might still exist paths from
+    the predecessors of that state to a goal state. In that case, the state
+    with no solution is like a "dead" end where you end up by choosing the
+    "wrong" path.
+\end{enumerate}
 
-\section{}
+\section{Pancake problem}
+Let $\mathcal{S}$ be the state space for the pancake problem.\\
+$\mathcal{S} = \langle S, A, \text{cost}, T, s_I, s_G \rangle$ with
+\begin{itemize}
+    \item S = $ \{ \langle s_1, s_2, ..., s_n \rangle \mid 
+    s_i \in \{ 1, ..., n \}, \ i \in \{1, ..., n \}, \
+    s_i \neq s_j \ \forall \ i \neq j \}$
+    \item $A = \{ \texttt{flip-1}, \ \texttt{flip-2}, ..., \ \texttt{flip-n} \}$
+    \item cost(\texttt{flip-1}) = cost(\texttt{flip-2}) = ... =
+    cost(\texttt{flip-n}) = 1
+    \item $T$ s.t. for $i = 1, ..., n$:\\
+        $\langle
+        \langle s_1, ..., s_n \rangle,
+        \texttt{flip-i},
+        \langle s_i, s_{i-1}, s_{i-2} ..., s_1, s_{i+1}, s_{i+2} ..., s_n \rangle
+        \rangle
+        \in T$
+    \item $s_I \in S$ (choose concrete start state depending on the actual problem)
+    \item $s_G = \langle 1, ..., n \rangle$
+\end{itemize}
 
 \section{}
 
