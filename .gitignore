@@ -331,3 +331,7 @@ TSWLatexianTemp*
 
 # xwatermark package
 *.xwm
+ex02/.idea/misc.xml
+ex02/ex02.iml
+ex02/.idea/modules.xml
+ex02/.idea/vcs.xml
