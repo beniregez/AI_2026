@@ -120,24 +120,25 @@
 Let $\mathcal{S}$ be the state space for the pancake problem.\\
 $\mathcal{S} = \langle S, A, \text{cost}, T, s_I, s_G \rangle$ with
 \begin{itemize}
-    \item S = $ \{ \langle s_1, s_2, ..., s_n \rangle \mid 
-    s_i \in \{ 1, ..., n \}, \ i \in \{1, ..., n \}, \
+    \item S = $ \{ \langle s_1, s_2, ..., s_6 \rangle \mid 
+    s_i \in \{ 1, ..., 6 \}, \ i \in \{1, ..., 6 \}, \
     s_i \neq s_j \ \forall \ i \neq j \}$
-    \item $A = \{ \texttt{flip-1}, \ \texttt{flip-2}, ..., \ \texttt{flip-n} \}$
+    \item $A = \{ \texttt{flip-1}, \ \texttt{flip-2}, ..., \ \texttt{flip-6} \}$
     \item cost(\texttt{flip-1}) = cost(\texttt{flip-2}) = ... =
-    cost(\texttt{flip-n}) = 1
-    \item $T$ s.t. for $i = 1, ..., n$:\\
+    cost(\texttt{flip-6}) = 1
+    \item $T$ s.t. for $i = 1, ..., 6$:\\
         $\langle
-        \langle s_1, ..., s_n \rangle,
+        \langle s_1, ..., s_6 \rangle,
         \texttt{flip-i},
-        \langle s_i, s_{i-1}, s_{i-2} ..., s_1, s_{i+1}, s_{i+2} ..., s_n \rangle
+        \langle s_1, s_{i-1}, ..., s_i, s_{i+1}, ..., s_6 \rangle
         \rangle
         \in T$
-    \item $s_I \in S$ (choose concrete start state depending on the actual problem)
-    \item $s_G = \langle 1, ..., n \rangle$
+    \item $s_I = \langle 3, 2, 5, 1, 6, 4 \rangle$
+    \item $s_G = \langle 1, 2, 3, 4, 5, 6 \rangle$
 \end{itemize}
 
 \section{}
+See implementation in \texttt{PancakesStateSpace.java}
 
 \section*{Statement on scientific integrity}
 Google Translate was used to assist in translating individual words from
