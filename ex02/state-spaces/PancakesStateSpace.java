@@ -1,3 +1,5 @@
+// Benjamin Regez, Luis Tritschler
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
