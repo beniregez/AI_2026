@@ -17,6 +17,7 @@
 \usepackage{tikz}  %% Pagacke to create graphics (graphs, automata, etc.)
 \usetikzlibrary{automata} %% Tikz library to draw automata
 \usetikzlibrary{arrows}   %% Tikz library for nicer arrow heads
+\usetikzlibrary{positioning}    %% Tikz library for more positioning options
 
 \usepackage{hyperref} %% hyperlinks
 
@@ -97,6 +98,98 @@
         \path (2) edge node {} (4);
         \path (2) edge node {} (5);
     \end{tikzpicture}
+\end{enumerate}
+
+\tikzset{
+  crossed/.style={
+    append after command={
+      \pgfextra{
+        \draw[red, line width=1pt]
+          (\tikzlastnode.north west) -- (\tikzlastnode.south east);
+        \draw[red, line width=1pt]
+          (\tikzlastnode.north east) -- (\tikzlastnode.south west);
+      }
+    }
+  }
+}
+
+\section{BFS-Tree vs uniform-cost search}
+\begin{enumerate}[(a)]
+    \item BFS-Tree (final version)\\[0.5em]
+    \begin{tikzpicture}[->,>=stealth',auto,node distance=1.8cm]
+        \node[initial above, initial text=, state] (1) {$s_1$};
+        \node[state] (2) [below of=1] {$s_2$};
+        \node[state] (3) [below left=1cm and 0.4cm of 2] {$s_3$};
+        \node[state] (4) [below right=1cm and 0.4cm of 2] {$s_4$};
+        \node[state, draw=blue] (1_1) [left of=3] {$\color{blue}s_1$};
+        \node[state] (6) [right of=4] {$s_6$};
+        \node[state, draw=blue] (2_1) [below of=1_1] {$\color{blue}s_2$};
+        \node[state, accepting] (7) [below of=3] {$s_7$};
+        \path (1) edge node {} (2);
+        \path (2) edge node {} (1_1);
+        \path (2) edge node {} (3);
+        \path (2) edge node {} (4);
+        \path (2) edge node {} (6);
+        \path (1_1) edge node {} (2_1);
+        \path (3) edge node {} (7);
+    \end{tikzpicture}\\[0.7em]
+    Order of expanded nodes:
+    \tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt](X){$s_1$};, 
+    \tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt](X){$s_2$};,
+    \tikz[baseline=(X.base)] \node[draw=blue,circle,inner sep=3pt](X){$s_1$};,
+    \tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt](X){$s_3$};
+    \\[0.5em]
+    \textit{Remark: actions are omitted since their cost do not influence the algorithm.}
+
+    \item uniform cost search\\[0.1em]
+    \begin{tikzpicture}[->,>=stealth',auto,node distance=1.8cm]
+        \node[initial above, initial text=, state] (1) {$s_1$};
+        \node[state] (2) [below of=1] {$s_2$};
+        \node[state] (6) [below left=0.9cm and 0.4cm of 2] {$s_6$};
+        \node[state] (3) [below right=0.9cm and 0.4cm of 2] {$s_3$};
+        \node[state] (4) [left of=6] {$s_4$};
+        \node[state, draw=blue] (1_1) [right of=3] {$\color{blue}s_1$};
+        \node[state, draw=blue] (3_1) [below left=1.17cm and 1.1cm of 4] {$\color{blue}s_3$};
+        \node[state] (5) [below of=4] {$s_5$};
+        \node[state, accepting] (7) [below of=3_1] {$s_7$};
+        \node[state, draw=blue] (5_1) [below of=6] {$\color{blue}s_5$};
+        \node[state, accepting] (8) [below of=5] {$s_8$};
+        \node[state, accepting, draw=blue] (7_1) [below right=1.17cm and 1.1cm of 5] {$\color{blue}s_7$};
+        % \node[state] () [below of=] {};
+
+        \path (1) edge node {$a_1$} (2);
+        \path (2) edge node[pos=0.8, above=1pt] {$a_0$} (4);
+        \path (2) edge node[pos=0.8, above=2pt] {$a_1$} (6);
+        \path (2) edge node[pos=0.8, above=2pt] {$a_2$} (3);
+        \path (2) edge node[pos=0.8, above=1pt] {$a_3$} (1_1);
+        \path (4) edge node[pos=0.8, above=2pt] {$a_1$} (3_1);
+        \path (4) edge node {$a_2$} (5);
+        \path (3_1) edge node {$a_3$} (7);
+        \path (6) edge node {$a_2$} (5_1);
+        \path (5) edge node {$a_1$} (8);
+        \path (5) edge node {$a_3$} (7_1);
+        % \path () edge node {$$} ();
+    \end{tikzpicture}\\[0.3em]
+    Order of expanded nodes:
+    \tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt](X){$s_1$};, 
+    \tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt](X){$s_2$};,
+    \tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt](X){$s_4$};,
+    \tikz[baseline=(X.base)] \node[draw=blue,circle,inner sep=3pt](X){$s_3$};,
+    \tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt](X){$s_6$};,
+    \tikz[baseline=(X.base)] \node[draw,circle,inner sep=3pt](X){$s_5$};\\[0.5em]
+    Remarks:
+    \begin{itemize}
+        \item The blue node in the expansion order is marked blue because it is
+        the second node occuring with the state $s_3$ 
+        \item In the expansion order, we omitted the pruned nodes (i.e., all
+        nodes that where not expanded because their state already was in the
+        ClosedList)
+        \item We did not add the node with the goal state 
+        \tikz[baseline=(X.base)] \node[draw,accepting,circle,inner sep=3pt](X){$s_8$};
+        to the expansion order: Since the algorithm returns the path
+        from $s_I$ to the goal state instead of expanding this node, we
+        cannot consider this node as 'expanded'
+    \end{itemize}
 \end{enumerate}
 
 \section{}
