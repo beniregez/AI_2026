@@ -193,8 +193,66 @@
 \end{enumerate}
 
 \section{}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{assets/img_3_3.jpg}
+    \caption{State space}
+    \label{fig:layout}
+\end{figure}
+
+\begin{enumerate}[(a)]
+    \item \textit{How many nodes does BFS-Tree (final version) insert
+    into the open list before finding a plan?}\\[0.5em]
+    From the figure, we can derive that there are $n$ layers
+    between $s_I$ and $s_G$. First, $s_I$ is added to the
+    open list. Since $s_I$ has two successors in layer 1,
+    they are added as well. Subsequently, every node has
+    two successors, and since there is no closed list to check
+    for dublicate states, in every layers the number of added
+    nodes doubles until layer n is reached. Every layer in the
+    expansion graph has twice as many nodes as the previous
+    layer: Layer 0 (with $s_I$) has 1 (i.e., $2^0$) nodes,
+    layer 1 has $2 = 2^1$ nodes, layer 2 has $2^2$ nodes and
+    so on. layer n has $2^n$ nodes. When all nodes in layer $n$
+    have been added to the open list, the successor of a node
+    in layer $n$ is picked, and since this is a node with the
+    goal state, the algorithm ends by returning the solution for
+    $\mathcal{S}$.
+    The number of nodes added to the open list is
+    \begin{equation*}
+        (\sum_{i=1}^{n} 2^i) + 1
+    \end{equation*}
+    Explanation: $2^i$ for every layer, +1 for the node with $s_I$.
+    
+    \item \textit{How many nodes does BFS-Graph insert into the open
+    list before finding a plan?}\\[0.5em]
+    Since BFS-Graph only inserts nodes with states more than once,
+    for every layer between $s_I$ and $s_G$ two nodes are being added.
+    Again, $s_I$ is added as in 3(a). This results in a total
+    of $2n + 1$ nodes added to the open list.
+\end{enumerate}
 
 \section{}
+\begin{enumerate}[(a)]
+    \item \textit{Why is early goal testing a good idea for breadth-first
+    search but not for uniform cost search?}\\[0.5em]
+    In breadth-first search, the cost for the actions are
+    not being considered but only the shortest solution is
+    sought (shortest by means of the number of nodes in the
+    solution for $\mathcal{S}$), so we can stop without having
+    to worry if the algorithm stops when a discovered successor
+    is a goal state.
+    This does not apply for unit cost search: In general, the
+    solution for $\mathcal{S}$ with the least cost is not always
+    the cheapest one (that is: there might exist a longer solution
+    but with less cost).
+    \item \textit{Why is a tree variant of uniform cost search not even
+    semi-complete?}\\[0.5em]
+    A tree variant with uniform cost search might get stuck
+    in a cycle of transitions with cost 0, so it is not even
+    semi-complete.
+\end{enumerate}
+
 
 \section*{Statement on scientific integrity}
 \begin{itemize}
