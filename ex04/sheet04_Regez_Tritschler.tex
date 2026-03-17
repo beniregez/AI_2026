@@ -40,7 +40,49 @@
 
 \begin{document}
 
-\section{}
+\section{Iterative Deepening DFS}
+\begin{enumerate}[(a)]
+    \item See file \texttt{IterativeDeepeningSearch.java}.
+    \item Metrics of Pancake instances run with implementation:\\
+    \begin{table}[h!]
+    \begin{tabular}{rrrrrr}
+    \hline
+    \\[-0.8em]
+     & & & \multicolumn{2}{c}{generated nodes} & \\[0.2em] \cline{4-5} \\[-0.8em]
+    instance & result & runtime & last iteration & total & solution length  \\[0.2em] \hline
+    \\[-0.8em]
+    01 & solved & 0.005 & 748 & 1 058 & 4 \\[0.2em] \hline
+    \\[-0.8em]
+    02 & solved & 0.029 & 53 146 & 76 021 & 6 \\[0.2em] \hline
+    \\[-0.8em]
+    03 & solved & 0.017 & 30 372 & 35 721 & 5 \\[0.2em] \hline
+    \\[-0.8em]
+    04 & solved & 0.043 & 146 923 & 221 656 & 6 \\[0.2em] \hline
+    \\[-0.8em]
+    05 & solved & 0.095 & 687 084 & 810 540 & 6 \\[0.2em] \hline
+    \\[-0.8em]
+    06 & timeout & & > 1 347 368 421 & > 1 418 282 548 & > 7 \\[0.2em] \hline
+    \\[-0.8em]
+    07 & timeout & & > & > & > \\[0.2em] \hline
+    \\[-0.8em]
+    08 & timeout & & > & > & > \\[0.2em] \hline
+    \\[-0.8em]
+    09 & timeout & & > & > & > \\[0.2em] \hline
+    \\[-0.8em]
+    10 & timeout & & > & > & > \\[0.2em] \hline
+    \end{tabular}
+    \end{table}
+    
+    \item TODO: Ask Tutor if problem 1 and 3 really have same length
+    \item \textit{Does your experiment from part (b) confirm the
+    theoretical claim that the total number of generated nodes
+    is dominated by the last iteration? Justify your answer.}\\[0.5em]
+    We can observe that indeed the number of generated nodes
+    is dominated by the last iteration. Instance 04 has the smallest
+    ratio out of instances 01 - 05 and yet more than 0.66 of all
+    nodes were generated in the last iteration (i.e., all other
+    solved instances had an even larger ratio).
+\end{enumerate}
 
 \section{}
 
