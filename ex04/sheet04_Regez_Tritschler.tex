@@ -43,6 +43,7 @@
 \section{Iterative Deepening DFS}
 \begin{enumerate}[(a)]
     \item See file \texttt{IterativeDeepeningSearch.java}.
+    
     \item Metrics of Pancake instances run with implementation:\\
     \begin{table}[h!]
     \begin{tabular}{rrrrrr}
@@ -51,29 +52,32 @@
      & & & \multicolumn{2}{c}{generated nodes} & \\[0.2em] \cline{4-5} \\[-0.8em]
     instance & result & runtime & last iteration & total & solution length  \\[0.2em] \hline
     \\[-0.8em]
-    01 & solved & 0.005 & 748 & 1 058 & 4 \\[0.2em] \hline
+    01 & solved & 0.008 & 5 429 & 7 294 & 5 \\[0.2em] \hline
     \\[-0.8em]
-    02 & solved & 0.029 & 53 146 & 76 021 & 6 \\[0.2em] \hline
+    02 & solved & 0.0179 & 27 188 & 50 063 & 6 \\[0.2em] \hline
     \\[-0.8em]
-    03 & solved & 0.017 & 30 372 & 35 721 & 5 \\[0.2em] \hline
+    03 & solved & 0.0163 & 34 722 & 40 071 & 5 \\[0.2em] \hline
     \\[-0.8em]
-    04 & solved & 0.043 & 146 923 & 221 656 & 6 \\[0.2em] \hline
+    04 & solved & 0.0568 & 320 633 & 395 366 & 6 \\[0.2em] \hline
     \\[-0.8em]
-    05 & solved & 0.095 & 687 084 & 810 540 & 6 \\[0.2em] \hline
+    05 & solved & 23.7479 & 353 307 323 & 476 764 112 & 9 \\[0.2em] \hline
     \\[-0.8em]
-    06 & timeout & & > 1 347 368 421 & > 1 418 282 548 & > 7 \\[0.2em] \hline
-    \\[-0.8em]
-    07 & timeout & & > & > & > \\[0.2em] \hline
-    \\[-0.8em]
-    08 & timeout & & > & > & > \\[0.2em] \hline
-    \\[-0.8em]
-    09 & timeout & & > & > & > \\[0.2em] \hline
-    \\[-0.8em]
-    10 & timeout & & > & > & > \\[0.2em] \hline
+    % 06 & timeout & & > 1 347 368 421 & > 1 418 282 548 & > 7 \\[0.2em] \hline
+    % \\[-0.8em]
+    % 07 & timeout & & > 754 137 931 & > 780 142 687 & > 6 \\[0.2em] \hline
+    % \\[-0.8em]
+    % 08 & timeout & & > 105 025 641 & > 107 718 606 & > 5 \\[0.2em] \hline
+    % \\[-0.8em]
+    % 09 & timeout & & > 188 721 946 & > 193 011 081 & > 5 \\[0.2em] \hline
+    % \\[-0.8em]
+    % 10 & timeout & & > 318 877 551 & > 325 385 256 & > 5 \\[0.2em] \hline
     \end{tabular}
-    \end{table}
-    
+    \end{table}\\[-0.5em]
+    \textcolor{red}{\textbf{Reminder for ourselves}}: \texttt{'ulimit -St 600'} must be
+    entered again if wsl has been restarted.
+
     \item TODO: Ask Tutor if problem 1 and 3 really have same length
+    
     \item \textit{Does your experiment from part (b) confirm the
     theoretical claim that the total number of generated nodes
     is dominated by the last iteration? Justify your answer.}\\[0.5em]
@@ -85,8 +89,40 @@
 \end{enumerate}
 
 \section{}
+\begin{equation*}
+    h(s) = \sum_{i=1}^{n-1} (|p_i - p_{i+1}| - 1)
+\end{equation*}
+\textit{Which of the four properties safe, goal-aware, admissible
+and consistent does h satisfy?}
+\begin{enumerate}[(i)]
+    \item $h$ is safe, because every state in the state space can
+    reach the goal state. Thus, $h^*(s) = \infty$ for all $s \in S$ with
+    $h(s) = \infty$ holds. (We do not allow missing or double pancakes)
 
-\section{}
+    \item $h$ is goal-aware. We will show this by direct proof:\\[0.5em]
+    Let $s_1 = \langle 1, 2, ..., n-1, n \rangle$
+    (i.e., $s_1$ is goal state). Thus,
+    \begin{equation*}
+        h(s_1) = \sum_{i=1}^{n-1} \underbrace{(\underbrace{|p_i - p_{i+1}|}_{= 1} - 1)}_{= 0}
+        = 0
+    \end{equation*}
+    Since $s_1$ is the only goal state, we have shown that for all
+    goal states the heuristic is zero.
+
+    \item $h$ is \textbf{not} admissible. We will show this by direct proof: \\[0.5em]
+    Let $s_b = \langle 3, 2, 1, 4 \rangle$. Then, $h(s_b) = 0 + 0 + 3 = 3 $.
+    But since $s_b$ only needs one action to reach the goal state, namely
+    \texttt{flip-3} (i.e., flip the first 3 pancakes), we have would expect
+    $h^*(s_b) = 1$. Thus, $h(s_b) \not\le h^*(s_b) $.
+
+    \item $h$ is \textbf{not} consistent. We will use the same state $s_b = \langle 3, 2, 1, 4 \rangle$
+    as in (iii) with $h(s_b) = 3$ to show this statement. Let $a_3 = $ \texttt{flip-3} with
+    cost($a_3$) = 1 (according to the definition of $\mathcal{S}$). Then, $s_b \xrightarrow{a_3} s_G$
+    with $s_G = \langle 1, 2, 3, 4 \rangle$ and since $s_G$ is the goal state, $h(s_G) = 0$.
+    We observe that $h(s) \le \text{cost}(a) + h(s')$ for all transitions $s \xrightarrow{a} s'$
+    does not hold, because $3 \not\le 1 + 0$.
+
+\end{enumerate}
 
 \section{}
 
