@@ -135,9 +135,48 @@ and consistent does h satisfy?}
 
 \end{enumerate}
 
+\newpage
 \section{}
+\textit{For the state space depicted below with uniform action costs of 1, define a heuristic that is
+consistent, not safe and has a perfect estimate for s0 (i.e., $h(s_0) = h^*(s_0)$). Justify your answer
+by showing why the heuristic is consistent and not safe.}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{assets/img_4_3.jpg}
+    % \caption{State space}
+    % \label{fig:layout}
+\end{figure}\\
+We define a heuristic $h$ as follows:
+$h = \{ s_0 \mapsto 3, s_1 \mapsto 2, s_2 \mapsto 1, s_3 \mapsto \infty,
+s_4 \mapsto \infty, s_5 \mapsto \infty \}$
+\begin{itemize}
+    \item $h$ is not safe: $h^*(s_4) = 1 \not= h(s_4)$
+    \item $h$ is consistent. We will show that $h(s) \leq
+    \underbrace{\text{cost}(a)}_{=1} + h(s') = 1 + h(s')$
+    for all transitions $s \xrightarrow{a} s'$:
+    \begin{itemize}
+        \item $s_0 \xrightarrow{a_1} s_1$:
+        $h(s_0) = 3 \color{green}\leq \color{black} 3 = 1 + h(s_1)$
+        \item $s_1 \xrightarrow{a_2} s_2$:
+        $h(s_1) = 2 \color{green}\leq \color{black} 2 = 1 + h(s_2)$
+        \item $s_2 \xrightarrow{a_3} s_5$:
+        $h(s_2) = 1 \color{green}\leq \color{black} \infty = 1 + h(s_5)$
+        \item $s_2 \xrightarrow{a_4} s_0$:
+        $h(s_2) = 1 \color{green}\leq \color{black} 4 = 1 + h(s_0)$
+        \item $s_1 \xrightarrow{a_5} s_4$:
+        $h(s_1) = 2 \color{green}\leq \color{black} \infty = 1 + h(s_4)$
+        \item $s_3 \xrightarrow{a_6} s_4$:
+        $h(s_3) = \infty \color{green}\leq \color{black} \infty = 1 + h(s_4)$
+        \item $s_4 \xrightarrow{a_7} s_5$:
+        $h(s_4) = \infty \color{green}\leq \color{black} \infty = 1 + h(s_5)$
+        \item $s_5 \xrightarrow{a_8} s_3$:
+        $h(s_5) = \infty \color{green}\leq \color{black} \infty = 1 + h(s_3)$
+    \end{itemize}
+\end{itemize}
 
 \section*{Statement on scientific integrity}
-
+Google Translate was used to assist in translating individual words from
+German to English when writing down the exercise solutions.\\
+Apart from that, we solved the entire exercise sheet on our own.
 
 \end{document}
