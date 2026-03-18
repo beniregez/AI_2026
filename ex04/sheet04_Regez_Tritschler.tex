@@ -70,13 +70,24 @@
     \\[-0.8em]
     09 & timeout & & > 1 589 311 291 & > 1 711 566 005 & > 8 \\[0.2em] \hline
     \\[-0.8em]
-    % 10 & timeout & & > 318 877 551 & > 325 385 256 & > 5 \\[0.2em] \hline
+    10 & timeout & & > 2 745 954 241 & > 2 942 093 829 & > 8 \\[0.2em] \hline
     \end{tabular}
     \end{table}\\[-0.5em]
+    Remark: With "solution length" we mean number of steps to the solution. E.g. length 0 means the
+    initial state node is also the goal state node. \\[0.5em]
     \textcolor{red}{\textbf{Reminder for ourselves}}: \texttt{'ulimit -St 600'} must be
     entered again if wsl has been restarted.
 
-    \item TODO: Ask Tutor if problem 1 and 3 really have same length
+    \item \textit{Problems 01 and 03 have the same solution lengths and therefore find solutions in the same
+    iteration of iterative deepening search. Yet, they generate significantly different numbers of
+    nodes before finding that solution. How is this possible given that both solve instances of
+    the pancake problem?}\\[0.5em]
+    Problem instance 1 has only 6 nodes: $\langle 4, 6, 1, 5, 3, 2 \rangle$,
+    but instance 3 has 8 nodes: $\langle 8, 7, 4, 3, 1, 5, 6, 2 \rangle$.
+    Thus, the corresponding state spaces also have 6 respectively 8 states.
+    That is, the number of generated nodes grow faster in problem 3 than
+    in problem 1. Although both problems have the same solution length, yet
+    the DFS algorithm generates more nodes in problem 3 for each layer.
     
     \item \textit{Does your experiment from part (b) confirm the
     theoretical claim that the total number of generated nodes
