@@ -8,8 +8,8 @@ public class IterativeDeepeningSearch extends SearchAlgorithmBase{
 
     @Override
     protected ArrayList<Action> run() {
-        int totalNodes = 0;
-        for (int i = 0; true; i++){
+        long totalNodes = 0;
+        for (long i = 0; true; i++){
             ListNumPair solution = depthLimitedSearch(this.stateSpace.init(), i);
             totalNodes += solution.num;
             System.out.println(String.format("Iteration: %d | Generated nodes: %d | total: %d", i, solution.num, totalNodes));
@@ -19,8 +19,8 @@ public class IterativeDeepeningSearch extends SearchAlgorithmBase{
         }
     }
 
-    private ListNumPair depthLimitedSearch(State s, int depthLim) {
-        int numCalls = 1;
+    private ListNumPair depthLimitedSearch(State s, long depthLim) {
+        long numCalls = 1;
 
         if (this.stateSpace.isGoal(s)) {
             return new ListNumPair(new ArrayList<Action>(), numCalls);
@@ -42,9 +42,9 @@ public class IterativeDeepeningSearch extends SearchAlgorithmBase{
 
     public class ListNumPair {
         public ArrayList<Action> list;
-        public int num;
+        public long num;
 
-        public ListNumPair(ArrayList<Action> list, int num) {
+        public ListNumPair(ArrayList<Action> list, long num) {
             this.list = list;
             this.num = num;
         }
