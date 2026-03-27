@@ -44,7 +44,8 @@
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.4\linewidth]{assets/img_5_1.jpg}
-    \label{fig:layout}
+    \caption*{}
+    \label{fig:5_1}
 \end{figure}
 \begin{enumerate}[(a)]
     \item greedy best-first search ($f(n) = h(n.\text{state})$):
@@ -69,7 +70,43 @@
 
 
 \section{}
-
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.4\linewidth]{assets/img_5_2.jpg}
+    \caption{state space $\mathcal{S}$ where $cost(a_1) = cost(a_2) = 2$}
+    \label{fig:5_2}
+\end{figure}
+\noindent We provide a heuristic $h$ for $\mathcal{S}$ such that:
+\begin{itemize}
+    \item IDA$^*$ performs at least 4 iterations
+    \item exactly one new path is reachable within the new f limit in each iteration
+\end{itemize}
+$h: \{
+    s_I \mapsto 1,
+    s_1 \mapsto 0,
+    s_2 \mapsto 1,
+    s_3 \mapsto 1,
+    s_4 \mapsto 0,
+    s_g \mapsto 0
+    \}$\\[0.5em]
+$h$ is admissible because $h(s) \leq h^*(s) \ \forall s $ in $ \mathcal{S}$\\[0.5em]
+\begin{table}[h!]
+\begin{tabular}{c|c|l}
+    iteration & f-limit & new path\\
+    \hline
+    1 & 1 & $\langle s_I \rangle$\\
+    \hline
+    2 & 2 & $\langle s_I, s_1 \rangle$\\
+    \hline
+    3 & 3 & $\langle s_I, s_2 \rangle$\\
+    \hline
+    4 & 4 & $\langle s_I, s_2, s_4 \rangle$\\
+    \hline
+    5 & 5 & $\langle s_I, s_1, s_3 \rangle$\\
+    \hline
+    6 & 6 & $\langle s_I, s_2, s_4, s_g \rangle$\\
+\end{tabular}
+\end{table}\\[-0.5em]
 
 \section{}
 
