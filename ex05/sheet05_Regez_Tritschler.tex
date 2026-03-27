@@ -41,6 +41,31 @@
 \begin{document}
 
 \section{}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.4\linewidth]{assets/img_5_1.jpg}
+    \label{fig:layout}
+\end{figure}
+\begin{enumerate}[(a)]
+    \item greedy best-first search ($f(n) = h(n.\text{state})$):
+    \begin{enumerate}[1.]
+        \item expanding $s_0: open = \langle s_2(f=2), s_1(f=5) \rangle$, 
+        $closed = \{ s_0(g=0) \}$
+        \item expanding $s_2: open = \langle s_3(f=1), s_1(f=5) \rangle$,
+        $closed = \{ s_0(g=0), s_2(g=10) \}$
+        \item expanding $s_3: open = \langle s_g(f=0), s_1(f=5) \rangle$,
+        $closed = \{ s_0(g=0), s_2(g=10), s_3(g=11) \}$
+        \item expanding $s_g:$ found goal with cost 12
+    \end{enumerate}
+    \item A$^*$ $(f(n) = g(n) + h(n.state))$:
+    \begin{enumerate}[1.]
+        \item expanding $s_0: open = \langle s_1(f=6), s_2(f=12) \rangle$, 
+        $closed = \{ s_0(g=0) \}$
+        \item expanding $s_1: open = \langle s_g(f=6), s_2(f=12) \rangle$, 
+        $closed = \{ s_0(g=0), s_1(g=1) \}$
+        \item expanding $s_g:$ found goal with cost 6
+     \end{enumerate}
+\end{enumerate}
 
 
 \section{}
