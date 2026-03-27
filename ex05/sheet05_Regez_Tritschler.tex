@@ -109,7 +109,30 @@ $h$ is admissible because $h(s) \leq h^*(s) \ \forall s $ in $ \mathcal{S}$\\[0.
 \end{table}\\[-0.5em]
 
 \section{}
-
+\textit{In Chapter B14 we showed that A$^*$ with reopening is optimal when using admissible heuristics. If
+you would try to apply the proof to weighted A$^*$ instead of A$^*$, where would it fail? Justify why
+it fails at the point you specify and briefly explain why it does not fail earlier.}\\[0.5em]
+The proof breaks because the f-bound lemma does hold for A$^*$ but not for
+weighted A$^*$:\\[0.5em]
+For weighted A$^*$, the evaluation function is
+$f(n) = g(n) + w \cdot h(n.state)$ with $ w \geq 1$.
+If we try to show that $f(n) \leq c^*$ for a node on the
+optimal path, we have $g(n) = g^*(n)$ and $c^* = g^*(n) + h*(n)$.
+We would need $g^*(n) + w \cdot h(n) \leq g^*(n) + h^*(n)$.
+We can simplify that to $w \cdot h(n) \leq h^*(n)$. While
+an admissible heuristic guarantees $h(n) \leq h^*(n)$, it does
+not guarantee that $w \cdot h(n) \leq h^*(n)$ when $w > 1$.\\[0.5em]
+Because $f(n)$ can exceed $c^*$, the algorithm is no longer
+guaranteed to have a node in the open list with an $f$ value
+lower than or equal to the optimal cost. Thus, the final step of
+the optimality proof failes to hold.\\[0.5em]
+\textit{Why does it not fail earlier?} The proof does not fail 
+at the optimal continuation lemma, but it remains valid also for
+weighted A$^*$: The lemma is independent of the evaluation function
+$f$. It only requires that settled states are expanded and their
+successors are placed in the open list with correct $g$ values.
+The nodes with optimal $g$ values are still placed in the open
+list.
 
 \section{}
 
