@@ -134,8 +134,63 @@ successors are placed in the open list with correct $g$ values.
 The nodes with optimal $g$ values are still placed in the open
 list.
 
+\newpage
 \section{}
-
+\begin{enumerate}[(a)]
+    \item Statement: A$^*$ without reopening using an admissible
+    but inconsistent heuristic is optimal.\\[0.5em]
+    We specify a counterexample to show that the statement is incorrect:\\
+    \begin{tikzpicture}[->,>=stealth',auto,node distance=1.8cm]
+        \node[initial left, initial text=, state, label=above:5] (s_I) {$s_I$};
+        \node[state] (s_1) [above right=0.8cm and 1cm of s_I, label=above:1] {$s_1$};
+        \node[state] (s_2) [below right=0.8cm and 1cm of s_I, label=above:1] {$s_2$};
+        \node[state, accepting] (s_g) [right=2.4cm of s_I, label=above:0] {$s_g$};
+        \path (s_I) edge node {4} (s_1);
+        \path (s_I) edge node {3} (s_2);
+        \path (s_1) edge node {1} (s_g);
+        \path (s_2) edge node {3} (s_g);
+    \end{tikzpicture}\\[0.7em]
+    The heuristic $h$ is admissible:\\
+    $h(s_I) = 5 \leq h^*(s_I) = 5$\\
+    $h(s_1) = 1 \leq h^*(s_1) = 1$\\
+    $h(s_2) = 1 \leq h^*(s_2) = 3$\\
+    $h(s_g) = 0 \leq h^*(s_g) = 0$\\[0.5em]
+    The heuristic $h$ is not consistent:\\
+    $h(s_I) = 5 \not \leq cost(s_I \rightarrow s_2) + h(s_2) = 3 + 1 = 4$\\[0.5em]
+    In the depicted state space, A$^*$ without reopening will expand $s_2$ right
+    after expanding $s_I$ because $f(s_2) = 3 + 1 = 4$ is less than $f(s_1) = 4 + 1 = 5$.
+    In the next iteration of the while loop, the next node with the least $f$ value
+    is $s_g$ with $f(s_g) = 3 + 0 = 3$. The algorithm terminates because
+    a goal state was reached. But the found path $\langle s_I, s_2, s_g \rangle$
+    is suboptimal with a cost of 6. The optimal path would be
+    $\langle s_I, s_1, s_g \rangle$ with a cost of 5.
+    Thus, the statement is not true.
+    \item Statement: A$^*$ without reopening using a consistent
+    but inadmissible heuristic is optimal.\\[0.5em]
+    We specify a counterexample to show that the statement is incorrect:\\
+    \begin{tikzpicture}[->,>=stealth',auto,node distance=1.8cm]
+        \node[initial left, initial text=, state, label=above:2] (s_I) {$s_I$};
+        \node[state, accepting] (s_1) [above right=0.8cm and 1cm of s_I, label=above:2] {$s_1$};
+        \node[state] (s_2) [below right=0.8cm and 1cm of s_I, label=above:1] {$s_2$};
+        \node[state, accepting] (s_3) [right=2.4cm of s_I, label=above:0] {$s_3$};
+        \path (s_I) edge node {1} (s_1);
+        \path (s_I) edge node {1} (s_2);
+        \path (s_2) edge node {1} (s_3);
+    \end{tikzpicture}\\[0.7em]
+    The heuristic $h$ is consistent:\\
+    $h(s_I) = 2 \leq cost(s_I \rightarrow s_1) + h(s_1) = 1 + 2 = 3$\\
+    $h(s_I) = 2 \leq cost(s_I \rightarrow s_2) + h(s_1) = 1 + 1 = 2$\\
+    $h(s_2) = 1 \leq cost(s_2 \rightarrow s_3) + h(s_3) = 1 + 0 = 1$\\[0.5em]
+    The heuristic $h$ is not admissible:\\
+    $h(s_1) = 2 \not \leq h^*(s_1) = 0$\\[0.5em]
+    After expanding the initial state $s_I$, A$^*$ will first expand $s_2$ because
+    $f(s_2) = 1 + 1 = 2$ and $f(s_1) = 1 + 2 = 3$. In the next iteration of the
+    while loop, $s_3$ is expanded because $f(s_3) = 1 + 0 = 0$ also is smaller
+    than $f(s_1)$. Since $s_3$ is goal state, the algorithm terminates with solution
+    path $\langle s_I, s_2, s_3 \rangle$. But this solution with a cost of 2 is not
+    optimal, but $\langle s_I, s_1 \rangle$ would be optimal with cost 1. Thus,
+    also the second statement is not correct.
+\end{enumerate}
 
 \section*{Statement on scientific integrity}
 % Google Translate was used to assist in translating individual words from
