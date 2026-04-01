@@ -41,7 +41,43 @@
 \begin{document}
 
 \section{}
-
+\begin{enumerate}[(a)]
+    \item \textit{COP of finding a maximum Hamiltonian
+    path in a fully connected graph}\\[0.5em]
+    $\mathcal{O} = \langle C, S, \text{opt}, \text{v} \rangle$ with
+    \begin{itemize}
+        \item $C = \{
+            \langle V, E \rangle \ | \
+            V \in \langle v_1, v_2, ..., v_n, v_{n+1} \rangle, \
+            n \in \mathbb{N}, \
+            v_{n+1} = v_1, \
+            E = \{ \langle v_i, v_{i+1} \rangle \ | \ i \in \{ 1, ..., n \} \}
+        \}$
+        \item $S = \{
+            \langle V, E \rangle \in C \ | \
+            w(v_k, v_{k+1}) \in \mathbb{R^+}
+            \}$
+        \item opt = max
+        \item $v(S) = \sum_{k=1}^{n} w(v_k, v_{k+1}) $
+    \end{itemize}
+    \item We state that for a given problem instance, there might exist several solutions with maximum edge weight sum.\\
+    That means, the problem consists of both finding a solution (search) as well as
+    finding the maximum (optimization). Thus, \textit{maximum Hamilton path}
+    is a combined search and optimization problem according to our formulation in (a).
+    \item We define the neighborhood function \texttt{neigh} as follows:\\[0.5em]
+    \texttt{neigh}$(
+        \{
+            \langle V, E \rangle \in C \ | \
+            V = \langle v_1, v_2, ..., v_l, ..., v_m, ... v_n, v_{n+1} \rangle , \
+            l < m, \
+            l, m \in \{ 1, ..., n \}
+        \}
+        ) \\[0.4em]
+    = \{
+        \langle V, E \rangle \ | \
+        V = \langle v_1, v_2, ..., v_m, ..., v_l, ... v_n, v_{n+1} \rangle
+    \}$
+\end{enumerate}
 
 \section{}
 
@@ -52,9 +88,13 @@
 \section{}
 
 
-% \section*{Statement on scientific integrity}
+\section*{Statement on scientific integrity}
+The following prompts were entered into Copilot:
+\begin{itemize}
+    \item (Ex 6.1(a)) "wie gebe ich mathematisch korrekt in einem undirected graph das gewicht w eines edges e an?"
+\end{itemize}
 % Google Translate was used to assist in translating individual words from
 % German to English when writing down the exercise solutions.\\
-% Apart from that, we solved the entire exercise sheet on our own.
+Apart from that, we solved the entire exercise sheet on our own.
 
 \end{document}
