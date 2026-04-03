@@ -21,6 +21,13 @@
 
 \usepackage{hyperref} %% hyperlinks
 
+\usepackage{chessfss} % contained in debian package texlive-games
+
+\tikzset{WhiteSquare/.style = {shape=rectangle, minimum width=28, minimum
+    height=28, anchor=south west}}
+\tikzset{BlackSquare/.style = {shape=rectangle, fill=lightgray, minimum
+    width=28, minimum height=28, anchor=south west}}
+
 %% Left side of header
 \lhead{\course\\\semester\\Exercise \homeworkNumber}
 %% Right side of header
@@ -79,6 +86,11 @@
     \}$
 \end{enumerate}
 
+\newpage
+\section{}
+\input{subchapters/ex06_02.tex}
+
+\newpage
 \section{}
 
 
