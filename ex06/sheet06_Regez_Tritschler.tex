@@ -23,6 +23,8 @@
 
 \usepackage{chessfss} % contained in debian package texlive-games
 
+\usepackage{listings}   % include & display python code
+
 \tikzset{WhiteSquare/.style = {shape=rectangle, minimum width=28, minimum
     height=28, anchor=south west}}
 \tikzset{BlackSquare/.style = {shape=rectangle, fill=lightgray, minimum
@@ -104,8 +106,20 @@ The following prompts were entered into Copilot:
 \begin{itemize}
     \item (Ex 6.1(a)) "wie gebe ich mathematisch korrekt in einem undirected graph das gewicht w eines edges e an?"
 \end{itemize}
-% Google Translate was used to assist in translating individual words from
-% German to English when writing down the exercise solutions.\\
+For exercise 6.2, we wrote a python script that calculates
+the heuristic values for the entire chess board (i.e., a candidate)
+to check all heuristic values of the candidates. The entire logic of the
+code was written by us without help. For the coloring of text in the console
+output, we used copilot.
+The script is attached at the end of this document.\\[0.5em]
 Apart from that, we solved the entire exercise sheet on our own.
+
+\newpage
+\section*{Python code for 6.2}
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+}
+\lstinputlisting{assets/ex06_02.py}
+
 
 \end{document}
