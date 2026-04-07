@@ -93,7 +93,31 @@
 
 \newpage
 \section{}
-
+$\varphi = (a \lor b) \land (\neg b \lor c) \land (\neg a \lor \neg b)$
+\begin{enumerate}[(a)]
+    \item $\varphi$ as binary constraint network:\\[0.5em]
+    $\mathcal{C} = \langle V, \text{dom}, (R_{uv}) \rangle$ with
+    \begin{itemize}
+        \item variables:\\[0.5em]
+        $V = a, b, c$
+        \item domains:\\[0.5em]
+        dom($a$) = dom($b$) = dom($c$) = $\{ 0, 1 \}$
+        \item constraints:\\[0.5em]
+        $R_{ab} = \{
+            \langle 0, 1 \rangle,
+            \langle 1, 0 \rangle
+        \}$\\[0.5em]
+        $R_{bc} = \{
+            \langle 0, 0 \rangle,
+            \langle 0, 1 \rangle,
+            \langle 1, 1 \rangle
+        \}$
+    \end{itemize}
+    \item A consistent partial variable assignment:\\[0.5em]
+    $\alpha_1 = \{ a \mapsto 1, b \mapsto 0 \}$
+    \item An inconsistent partial variable assignment:\\[0.5em]
+    $\alpha_1 = \{ a \mapsto 0, b \mapsto 0 \}$
+\end{enumerate}
 
 \section{}
 
