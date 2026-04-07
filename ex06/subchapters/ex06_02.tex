@@ -44,6 +44,7 @@ Remark: Numbers in tiles indicate the heuristic of the neighbor (if the queen in
 
     \end{tikzpicture}
 \end{center}
+\newpage
 First iteration (current heuristic value: 2):
 \begin{center}
   \begin{tikzpicture}
@@ -88,14 +89,177 @@ First iteration (current heuristic value: 2):
 \end{center}
 The algorithm already stops after the first iteration, because the heuristic value
 of the current candidate is 2 and there is no tile with a better heuristic value.
+\\[0.5em]
+  \item Hill climbing variant (next candidate: first pick a file at random and then moving the queen
+    in that file to a square with best heuristic value).\\[0.5em]
+Initial candidate, file 3 considered, current has h = 3:
+\begin{center}
+  \begin{tikzpicture}
+    \draw[step=1,black,thin] (0,0) grid (5,5);
 
+    % First file
+    \node[BlackSquare] at (0,0) {}; 
+    \node[WhiteSquare] at (0,1) {};
+    \node[BlackSquare] at (0,2) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (0,3) {};
+    \node[BlackSquare] at (0,4) {};
+    
+    % Second file   
+    \node[WhiteSquare] at (1,0) {};
+    \node[BlackSquare] at (1,1) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (1,2) {};
+    \node[BlackSquare] at (1,3) {};
+    \node[WhiteSquare] at (1,4) {};
+
+    % Third file 
+    \node[BlackSquare] at (2,0) {5};
+    \node[WhiteSquare] at (2,1) {4};
+    \node[BlackSquare] at (2,2) {6};
+    \node[WhiteSquare] at (2,3) {\BlackQueenOnWhite};
+    \node[BlackSquare] at (2,4) {\color{blue}3\color{black}};
+
+    % Fourth file
+    \node[WhiteSquare] at (3,0) {};
+    \node[BlackSquare] at (3,1) {};
+    \node[WhiteSquare] at (3,2) {\BlackQueenOnWhite};
+    \node[BlackSquare] at (3,3) {};
+    \node[WhiteSquare] at (3,4) {};
+
+    % Fifth file
+    \node[BlackSquare] at (4,0) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (4,1) {};
+    \node[BlackSquare] at (4,2) {};
+    \node[WhiteSquare] at (4,3) {};
+    \node[BlackSquare] at (4,4) {};
+
+    \end{tikzpicture}
+\end{center}
 \newpage
-    \item Hill climbing variant where the next candidate that is considered is selected
-by first picking a file at random and then moving the (unique) queen in that file to a square
-in that file with the best heuristic value (the variant is introduced on slide 9 of Chapter C2
-in the print version of the lecture slides). Assume that the random choices are resolved in
-such a way that the file selection picks the third file first, and in each subsequent step the file
-that is to the left of the file that was selected last (if the leftmost file was selected last, the
-rightmost file is selected).\\[0.5em]
-\color{red}TODO \color{black}
+First iteration, file 2 considered, current has h = 3 (note that
+the null move is best candidate):
+\begin{center}
+  \begin{tikzpicture}
+    \draw[step=1,black,thin] (0,0) grid (5,5);
+
+    % First file
+    \node[BlackSquare] at (0,0) {}; 
+    \node[WhiteSquare] at (0,1) {};
+    \node[BlackSquare] at (0,2) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (0,3) {};
+    \node[BlackSquare] at (0,4) {};
+    
+    % Second file   
+    \node[WhiteSquare] at (1,0) {4};
+    \node[BlackSquare] at (1,1) {\color{blue}\BlackQueenOnWhite\color{black}};
+    \node[WhiteSquare] at (1,2) {4};
+    \node[BlackSquare] at (1,3) {5};
+    \node[WhiteSquare] at (1,4) {4};
+
+    % Third file 
+    \node[BlackSquare] at (2,0) {};
+    \node[WhiteSquare] at (2,1) {};
+    \node[BlackSquare] at (2,2) {};
+    \node[WhiteSquare] at (2,3) {};
+    \node[BlackSquare] at (2,4) {\BlackQueenOnWhite};
+
+    % Fourth file
+    \node[WhiteSquare] at (3,0) {};
+    \node[BlackSquare] at (3,1) {};
+    \node[WhiteSquare] at (3,2) {\BlackQueenOnWhite};
+    \node[BlackSquare] at (3,3) {};
+    \node[WhiteSquare] at (3,4) {};
+
+    % Fifth file
+    \node[BlackSquare] at (4,0) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (4,1) {};
+    \node[BlackSquare] at (4,2) {};
+    \node[WhiteSquare] at (4,3) {};
+    \node[BlackSquare] at (4,4) {};
+
+    \end{tikzpicture}
+\end{center}
+Second iteration, file 1 considered, current has h = 3:
+\begin{center}
+  \begin{tikzpicture}
+    \draw[step=1,black,thin] (0,0) grid (5,5);
+
+    % First file
+    \node[BlackSquare] at (0,0) {2}; 
+    \node[WhiteSquare] at (0,1) {1};
+    \node[BlackSquare] at (0,2) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (0,3) {\color{blue}0\color{black}};
+    \node[BlackSquare] at (0,4) {2};
+    
+    % Second file   
+    \node[WhiteSquare] at (1,0) {};
+    \node[BlackSquare] at (1,1) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (1,2) {};
+    \node[BlackSquare] at (1,3) {};
+    \node[WhiteSquare] at (1,4) {};
+
+    % Third file 
+    \node[BlackSquare] at (2,0) {};
+    \node[WhiteSquare] at (2,1) {};
+    \node[BlackSquare] at (2,2) {};
+    \node[WhiteSquare] at (2,3) {};
+    \node[BlackSquare] at (2,4) {\BlackQueenOnWhite};
+
+    % Fourth file
+    \node[WhiteSquare] at (3,0) {};
+    \node[BlackSquare] at (3,1) {};
+    \node[WhiteSquare] at (3,2) {\BlackQueenOnWhite};
+    \node[BlackSquare] at (3,3) {};
+    \node[WhiteSquare] at (3,4) {};
+
+    % Fifth file
+    \node[BlackSquare] at (4,0) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (4,1) {};
+    \node[BlackSquare] at (4,2) {};
+    \node[WhiteSquare] at (4,3) {};
+    \node[BlackSquare] at (4,4) {};
+
+    \end{tikzpicture}
+\end{center}
+Solution found:
+\begin{center}
+  \begin{tikzpicture}
+    \draw[step=1,black,thin] (0,0) grid (5,5);
+
+    % First file
+    \node[BlackSquare] at (0,0) {}; 
+    \node[WhiteSquare] at (0,1) {};
+    \node[BlackSquare] at (0,2) {};
+    \node[WhiteSquare] at (0,3) {\BlackQueenOnWhite};
+    \node[BlackSquare] at (0,4) {};
+    
+    % Second file   
+    \node[WhiteSquare] at (1,0) {};
+    \node[BlackSquare] at (1,1) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (1,2) {};
+    \node[BlackSquare] at (1,3) {};
+    \node[WhiteSquare] at (1,4) {};
+
+    % Third file 
+    \node[BlackSquare] at (2,0) {};
+    \node[WhiteSquare] at (2,1) {};
+    \node[BlackSquare] at (2,2) {};
+    \node[WhiteSquare] at (2,3) {};
+    \node[BlackSquare] at (2,4) {\BlackQueenOnWhite};
+
+    % Fourth file
+    \node[WhiteSquare] at (3,0) {};
+    \node[BlackSquare] at (3,1) {};
+    \node[WhiteSquare] at (3,2) {\BlackQueenOnWhite};
+    \node[BlackSquare] at (3,3) {};
+    \node[WhiteSquare] at (3,4) {};
+
+    % Fifth file
+    \node[BlackSquare] at (4,0) {\BlackQueenOnWhite};
+    \node[WhiteSquare] at (4,1) {};
+    \node[BlackSquare] at (4,2) {};
+    \node[WhiteSquare] at (4,3) {};
+    \node[BlackSquare] at (4,4) {};
+
+    \end{tikzpicture}
+\end{center}
 \end{enumerate}
