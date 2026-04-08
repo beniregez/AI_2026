@@ -281,13 +281,57 @@ $\varphi = (a \lor b) \land (\neg b \lor c) \land (\neg a \lor \neg b)$
     \begin{itemize}
         \item dom$(a) = \{ 0 \}$
         \item $b$ is assigned: $\alpha = \{ b \mapsto 0 \}$
-        \item dom$(c) = \{ 3 \}$
+        \item dom$(c) = \{ 1, 2, 3 \}$
     \end{itemize}
     Explanations: From $\alpha$ and $R_{a, b}$ we directly infer
     that $a$ can only be assigned 0.
     Similarly, from $\alpha$ and $R_{b, c}$ we infer that $c$
     can only be assigned the values 1, 2, or 3.
-    \item 
+    \item $C' = \langle V, \text{dom}, R_{uv} \rangle$ with
+    \begin{itemize}
+        \item $V = \{ a, b, c \}$
+        \item domains:
+        \begin{itemize}
+            \item dom$(a) = \{ 0, 1 \}$
+            \item dom$(b) = \{ 0, 1 \}$
+            \item dom$(c) = \{ 2, 3 \}$
+        \end{itemize}
+        \item constraints:
+        \begin{itemize}
+            \item $R_{a,b} = \{
+                \langle 0, 0 \rangle,
+                \langle 1, 1 \rangle
+            \}$
+            \item $R_{a,c} = \{
+                \langle 0, 3 \rangle,
+                \langle 1, 2 \rangle
+            \}$
+            \item $R_{b,c} = \{
+                \langle 0, 3 \rangle,
+                \langle 1, 2 \rangle
+            \}$
+        \end{itemize}
+    \end{itemize}
+    $\mathcal{C}'$ is the tightest network possible equivalent to $\mathcal{C}$.
+    We will show the two parts (equivalence and tightness) separately:
+    \begin{enumerate}[(i)]
+        \item $\mathcal{C}' \equiv \mathcal{C}$ because both have the same solutions:
+        \begin{itemize}
+            \item $\alpha_1 = \{
+                a \mapsto 0,
+                b \mapsto 0,
+                c \mapsto 3
+            \}$
+            \item $\alpha_2 = \{
+                a \mapsto 1,
+                b \mapsto 1,
+                c \mapsto 2
+            \}$
+        \end{itemize}
+        \item $\mathcal{C}'$ is the tightest possible constraint network
+        because only the tuples that are necessary for the two
+        total assignment for the solutions are contained in $R_{uv}$.
+    \end{enumerate}
 \end{enumerate}
 
 \newpage
