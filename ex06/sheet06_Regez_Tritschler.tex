@@ -274,8 +274,21 @@ $\varphi = (a \lor b) \land (\neg b \lor c) \land (\neg a \lor \neg b)$
     time.
 \end{enumerate}
 
+\newpage
 \section{}
-
+\begin{enumerate}[(a)]
+    \item Domains of variables after applying forward checking:
+    \begin{itemize}
+        \item dom$(a) = \{ 0 \}$
+        \item $b$ is assigned: $\alpha = \{ b \mapsto 0 \}$
+        \item dom$(c) = \{ 3 \}$
+    \end{itemize}
+    Explanations: From $\alpha$ and $R_{a, b}$ we directly infer
+    that $a$ can only be assigned 0.
+    Similarly, from $\alpha$ and $R_{b, c}$ we infer that $c$
+    can only be assigned the values 1, 2, or 3.
+    \item 
+\end{enumerate}
 
 \newpage
 \section*{Statement on scientific integrity}
