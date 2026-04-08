@@ -198,8 +198,80 @@ $\varphi = (a \lor b) \land (\neg b \lor c) \land (\neg a \lor \neg b)$
     \end{center}
 
     \item Variable order: $\langle z, y, x, w \rangle$
-    \item 
-    \item 
+
+    \item Value orders according to \textit{minimum conflicts} criterion:\\[0.5em]
+    $z: \langle 4, 2 \rangle$\\[0.5em]
+    $y: \langle 3, 1, 4 \rangle$\\[0.5em]
+    $x: \langle 1, 2, 3 \rangle$\\[0.5em]
+    $w: \langle 1, 2, 3, 4 \rangle$\\[0.5em]
+    Explanations:
+    \begin{itemize}
+        \item $z \mapsto 4$ appears in more relations later than $z \mapsto 2$ and thus
+        has less conflicts
+        \item $y \mapsto 3$ appears in one relation more, later in the "tree" (namely in $R_{wy}$).
+        $y \mapsto 1$ as well as $y \mapsto 4$ don't occur in any additional relation afterwards.
+        \item $x$ and $w$ occur the same amount of relations afterwards, thus we just
+        order them in ascending values.
+    \end{itemize}
+    
+    \item Search tree with naive backtracking with variable order from (b) and
+    value order from (c):
+    \begin{center}
+    \begin{tikzpicture}[
+        level distance=15mm,
+        sibling distance=20mm,
+        every node/.style = {
+            rectangle, rounded corners,
+            draw, align=center,
+            top color=white, bottom color=white!20
+        },
+        edge from parent/.style={draw,-latex},
+        level 1/.style={sibling distance=50mm},
+        level 2/.style={sibling distance=15mm},
+        level 3/.style={sibling distance=5mm},
+        level 4/.style={sibling distance=5mm},
+    ]
+    \node (root) {}
+        child { node (4){$4$}
+            child { node (43){$3$}
+                child { node (431){$1$}
+                    child {node (4311){$1$} }
+                    child {node (4312){$2$} }
+                    child {node (4313){$3$} }
+                    child {node (4314){$4$} }
+                }
+            }
+            child { node (41){$1$}
+            }
+            child { node (44){$4$}
+            }
+        }
+        child { node (2){$2$}
+            child { node (23){$3$}
+                child { node (231){$1$} }
+                child { node (232){$2$}
+                    child { node (2321){$1$} }
+                    child { node (2322){$2$} }
+                    child { node (2323){\color{blue}{3}}}
+                }
+            }
+        };
+    \node[left=4cm of 4, draw=none, anchor=west] (z) {$z$};
+    \node[left=2.5cm of 43, draw=none, anchor=west] (y) {$y$};
+    \node[left=2.5cm of 431, draw=none, anchor=west] (x) {$x$};
+    \node[left=1.8cm of 4311, draw=none, anchor=west] (w) {$w$};
+    \end{tikzpicture}
+    \end{center}
+    We get the same solution as in (a): $\{
+        w \mapsto 3,
+        x \mapsto 2,
+        y \mapsto 3,
+        z \mapsto 2
+    \}$\\[0.5em]
+    The algorithm does not need to expand as many nodes as in (a) because
+    most of the time, the constraints (i.e., the relation) fail to hold sooner
+    in the "deepening". In (a), the algorithm expands "unnecessarily" for a long
+    time.
 \end{enumerate}
 
 \section{}
