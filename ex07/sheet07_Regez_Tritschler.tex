@@ -51,8 +51,34 @@
 
 \begin{document}
 
-\section{}
-
+\section{Arc and path consistency}
+\begin{enumerate}[(a)]
+    \item We apply \texttt{AC-3} on $\mathcal{C}$:
+    \begin{enumerate}[1.]
+        \item Iteration: \texttt{revise($\mathcal{C}, v_1, v_3$)} $\rightarrow$ 
+        dom($v_3$) = $\{ g, b \}$
+        \item Iteration: \texttt{revise($\mathcal{C}, v_4, v_5$)} $\rightarrow$ 
+        dom($v_5$) = $\{ r, g \}$
+        \item Iteration: \texttt{revise($\mathcal{C}, v_1, v_2$)} $\rightarrow$ 
+        dom($v_2$) = $\{ g, b \}$
+        \item Iteration: \texttt{revise($\mathcal{C}, v_4, v_3$)} $\rightarrow$ 
+        dom($v_3$) = $\{ g \}$
+        \item Iteration: \texttt{revise($\mathcal{C}, v_3, v_2$)} $\rightarrow$ 
+        dom($v_2$) = $\{ b \}$
+    \end{enumerate}
+    Obtained constraint network $\mathcal{C}'' =
+    \langle V'', \text{dom}'', R''_{uv} \rangle$ with
+    \begin{itemize}
+        \item $V'' = V$
+        \item dom$''(v_1) = \{ r \}$
+        \item dom$''(v_2) = \{ b \}$
+        \item dom$''(v_3) = \{ g \}$
+        \item dom$''(v_4) = \{ b \}$
+        \item dom$''(v_5) = \{ r, g \}$
+        \item $R''_{uv} = R_{uv}$
+    \end{itemize}
+    \item
+\end{enumerate}
 
 \section*{Statement on scientific integrity}
 
