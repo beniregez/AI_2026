@@ -138,7 +138,72 @@
 \end{enumerate}
 
 \newpage
-\section{}
+\section{Constraint graphs}
+\begin{enumerate}[(a)]
+    \item Constraint graph of $\mathcal{C}$:\\[1em]
+    \begin{tikzpicture}[->,>=stealth',auto,node distance=2cm]
+        \node[state] (A) {A};
+        \node[state, right of=A] (C) {$C$};
+        \node[state, right of=C] (E) {$E$};
+        \node[state, below of=A] (B) {$B$};
+        \node[state, right of=B] (G) {$G$};
+        \node[state, below of=B] (D) {$D$};
+        \node[state, right of=D] (F) {$F$};
+        \path[-] (A) edge node {} (C);
+        \path[-] (C) edge node {} (E);
+        \path[-] (C) edge node {} (G);
+        \path[-] (B) edge node {} (G);
+        \path[-] (G) edge node {} (F);
+        \path[-] (D) edge node {} (F);
+    \end{tikzpicture}
+    \item We apply the algorithm for trees as constraint graphs to solve $\mathcal{C}$:
+    \begin{itemize}
+        \item Ordered tree:\\[1em]
+        \begin{tikzpicture}[->,>=stealth',auto,node distance=1.6cm]
+            \node[state] (A) {A};
+            \node[state, right of=A] (C) {$C$};
+            \node[state, right of=C] (E) {$E$};
+            \node[state, right of=E] (G) {$G$};
+            \node[state, right of=G] (B) {$B$};
+            \node[state, right of=B] (F) {$F$};
+            \node[state, right of=F] (D) {$D$};
+            \path (A) edge node {} (C);
+            \path (C) edge node {} (E);
+            \path[bend left] (C) edge node {} (G);
+            \path (G) edge node {} (B);
+            \path[bend left] (G) edge node {} (F);
+            \path (F) edge node {} (D);
+        \end{tikzpicture}
+        \item Variable order, given by the ordered tree:\\[0.5em]
+        $A \prec C \prec E \prec G \prec B \prec F \prec D$
+        \item Sequence of calls of the revise method and resulting variable domains:
+        \begin{enumerate}[1.]
+            \item step: revise($F, D$)
+            $\rightarrow \text{dom}(F) = \{ 1, 2, 3 \}$
+            \item step: revise($G, F$)
+            $\rightarrow \text{dom}(G) = \{ 1, 2, 3, 4, 5 \}$
+            \item step: revise($G, B$)
+            $\rightarrow \text{dom}(G) = \{ 2, 3, 4, 5 \}$
+            \item step: revise($C, G$)
+            $\rightarrow \text{dom}(C) = \{ 1, 6, 7, 8, 9, 10 \}$
+            \item step: revise($C, E$)
+            $\rightarrow \text{dom}(C) = \{ 1 \}$
+            \item step: revise($A, C$)
+            $\rightarrow \text{dom}(A) = \{ 1 \}$
+        \end{enumerate}
+        \item Final variable assignments after backtracking search:\\[0.5em]
+        $\alpha = \{
+            A \mapsto 1,
+            B \mapsto 1,
+            C \mapsto 1,
+            D \mapsto 8,
+            E \mapsto 3,
+            F \mapsto 3,
+            G \mapsto 5
+        \}$
+    \end{itemize}
+\end{enumerate}
+
 
 \section*{Statement on scientific integrity}
 
