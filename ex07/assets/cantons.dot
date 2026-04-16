@@ -10,61 +10,61 @@
 // belong to one canton by using the comment sign "//".
 
 graph {
-    Aargau -- BaselLandschaft
-    Aargau -- Bern
-    Aargau -- Luzern
+//    Aargau -- BaselLandschaft
+//    Aargau -- Bern
+//    Aargau -- Luzern
     Aargau -- Solothurn
-    Aargau -- Zuerich
+//    Aargau -- Zuerich
     Aargau -- Zug
     AppenzellAusserrhoden -- AppenzellInnerrhoden
-    AppenzellAusserrhoden -- StGallen
-    AppenzellInnerrhoden -- StGallen
-    BaselLandschaft -- BaselStadt
-    BaselLandschaft -- Jura
-    BaselLandschaft -- Solothurn
-    Bern -- Freiburg
-    Bern -- Jura
-    Bern -- Luzern
-    Bern -- Neuenburg
-    Bern -- Nidwalden
-    Bern -- Obwalden
-    Bern -- Solothurn
-    Bern -- Uri
-    Bern -- Waadt
-    Bern -- Wallis
+//    AppenzellAusserrhoden -- StGallen
+//    AppenzellInnerrhoden -- StGallen
+//    BaselLandschaft -- BaselStadt
+//    BaselLandschaft -- Jura
+//    BaselLandschaft -- Solothurn
+//    Bern -- Freiburg
+//    Bern -- Jura
+//    Bern -- Luzern
+//    Bern -- Neuenburg
+//    Bern -- Nidwalden
+//    Bern -- Obwalden
+//    Bern -- Solothurn
+//    Bern -- Uri
+//    Bern -- Waadt
+//    Bern -- Wallis
     Freiburg -- Neuenburg
-    Freiburg -- Waadt
-    Genf -- Waadt
+//    Freiburg -- Waadt
+//    Genf -- Waadt
     Glarus -- Graubuenden
     Glarus -- Schwyz
-    Glarus -- StGallen
-    Glarus -- Uri
-    Graubuenden -- StGallen
+//    Glarus -- StGallen
+//    Glarus -- Uri
+//    Graubuenden -- StGallen
     Graubuenden -- Tessin
-    Graubuenden -- Uri
+//    Graubuenden -- Uri
     Jura -- Neuenburg
     Jura -- Solothurn
-    Luzern -- Nidwalden
-    Luzern -- Obwalden
-    Luzern -- Schwyz
-    Luzern -- Zug
-    Neuenburg -- Waadt
+//    Luzern -- Nidwalden
+//    Luzern -- Obwalden
+//    Luzern -- Schwyz
+//    Luzern -- Zug
+//    Neuenburg -- Waadt
     Nidwalden -- Obwalden
     Nidwalden -- Schwyz
-    Nidwalden -- Uri
-    Obwalden -- Uri
+//    Nidwalden -- Uri
+//    Obwalden -- Uri
     Schaffhausen -- Thurgau
-    Schaffhausen -- Zuerich
-    Schwyz -- StGallen
-    Schwyz -- Uri
-    Schwyz -- Zuerich
+//    Schaffhausen -- Zuerich
+//    Schwyz -- StGallen
+//    Schwyz -- Uri
+//    Schwyz -- Zuerich
     Schwyz -- Zug
-    StGallen -- Thurgau
-    StGallen -- Zuerich
-    Tessin -- Uri
+//    StGallen -- Thurgau
+//    StGallen -- Zuerich
+//    Tessin -- Uri
     Tessin -- Wallis
-    Thurgau -- Zuerich
-    Uri -- Wallis
-    Waadt -- Wallis
-    Zuerich -- Zug
+//    Thurgau -- Zuerich
+//    Uri -- Wallis
+//    Waadt -- Wallis
+//    Zuerich -- Zug
 }
