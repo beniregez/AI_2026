@@ -66,19 +66,79 @@
         \item Iteration: \texttt{revise($\mathcal{C}, v_3, v_2$)} $\rightarrow$ 
         dom($v_2$) = $\{ b \}$
     \end{enumerate}
-    Obtained constraint network $\mathcal{C}'' =
-    \langle V'', \text{dom}'', R''_{uv} \rangle$ with
+    Obtained constraint network $\mathcal{C}' =
+    \langle V', \text{dom}', R'_{uv} \rangle$ with
+    \begin{itemize}
+        \item $V' = V$
+        \item dom$'(v_1) = \{ r \}$
+        \item dom$'(v_2) = \{ b \}$
+        \item dom$'(v_3) = \{ g \}$
+        \item dom$'(v_4) = \{ b \}$
+        \item dom$'(v_5) = \{ r, g \}$
+        \item $R'_{uv} = R_{uv}$
+    \end{itemize}
+    \item We apply \texttt{PC-2} on $\mathcal{C}$:
+    \begin{enumerate}[1.]
+        \item Iteration: \texttt{revise-3($\mathcal{C}, v_3, v_2, v_1$)}
+        $\rightarrow R_{v_3 v_2} = \{
+            \langle b, g \rangle,
+            \langle g, b \rangle
+        \}$
+        \item Iteration: \texttt{revise-3($\mathcal{C}, v_2, v_3, v_1$)}
+        $\rightarrow R_{v_2 v_3} = \{
+            \langle g, b \rangle,
+            \langle b, g \rangle
+        \}$
+        \item Iteration: \texttt{revise-3($\mathcal{C}, v_1, v_3, v_2$)}
+        $\rightarrow R_{v_1 v_3} = \{
+            \langle r, g \rangle,
+            \langle r, b \rangle
+        \}$
+        \item Iteration: \texttt{revise-3($\mathcal{C}, v_1, v_2, v_3$)}
+        $\rightarrow R_{v_1 v_2} = \{
+            \langle r, b \rangle,
+            \langle r, g \rangle
+        \}$
+        \item Iteration: \texttt{revise-3($\mathcal{C}, v_2, v_1, v_3$)}
+        $\rightarrow R_{v_2 v_1} = \{
+            \langle g, r \rangle,
+            \langle b, r \rangle
+        \}$
+        \item Iteration: \texttt{revise-3($\mathcal{C}, v_3, v_1, v_2$)}
+        $\rightarrow R_{v_3 v_1} = \{
+            \langle g, r \rangle,
+            \langle b, r \rangle
+        \}$
+    \end{enumerate}
+    Obtained constraint network $\mathcal{C}''
+    = \langle V'', \text{dom}'', R_{uv}'' \rangle $ with
     \begin{itemize}
         \item $V'' = V$
-        \item dom$''(v_1) = \{ r \}$
-        \item dom$''(v_2) = \{ b \}$
-        \item dom$''(v_3) = \{ g \}$
-        \item dom$''(v_4) = \{ b \}$
-        \item dom$''(v_5) = \{ r, g \}$
-        \item $R''_{uv} = R_{uv}$
+        \item dom$''$ = dom (with reduced domains
+        $\text{dom}(v_1) = \{ r \}$ and
+        $\text{dom}(v_4) = \{ b \}$)
+        \item $R_{v_1, v_2}'' = \{
+            \langle r, b \rangle,
+            \langle r, g \rangle
+        \}$
+        \item $R_{v_1, v_3}'' = \{
+            \langle r, g \rangle,
+            \langle r, b \rangle
+        \}$
+        \item $R_{v_2, v_3}'' = \{
+            \langle g, b \rangle,
+            \langle b, g \rangle
+        \}$
+        \item $R_{v_2, v_5}'' = R_{v_2, v_5}$
+        \item $R_{v_3, v_4}'' = R_{v_3, v_4}$
+        \item $R_{v_4, v_5}'' = R_{v_4, v_5}$
     \end{itemize}
-    \item
+    As suggested, we implemented 7.1(b) as a python program
+    instead of solving it with pen and paper.
 \end{enumerate}
+
+\newpage
+\section{}
 
 \section*{Statement on scientific integrity}
 
