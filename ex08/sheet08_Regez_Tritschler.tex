@@ -52,6 +52,53 @@
 \begin{document}
 
 \section{}
+$\varphi = ((A \lor \lnot C) \rightarrow (\lnot C \land (\lnot A \lor B)))$
+\begin{enumerate}[(a)]
+    \item $\varphi$ is
+    \begin{itemize}
+        \item satisfiable because e.g. $\{
+            A \mapsto T,
+            B \mapsto T,
+            C \mapsto F
+        \}$ satisfies $\varphi$
+        \item \textbf{not} unsatisfiable because it is satisfiable
+        \item falsifiable because e.g. $\{
+            A \mapsto T,
+            B \mapsto T,
+            C \mapsto T
+        \}$ does \textbf{not} satisfy $\varphi$
+        \item \textbf{not} valid, because $\varphi$ is falsifiable
+    \end{itemize}
+    % Transform φ into CNF using the equivalences from Chapter E2. Provide all intermediate
+    % formulas that result from applying an equivalence transformation.
+    \item We will transform $\varphi$ into CNF:
+    \begin{align}
+        \nonumber
+        \varphi &= (A \lor \lnot C) \rightarrow (\lnot C \land (\lnot A \lor B))\\
+        \nonumber
+        &\equiv \lnot (A \lor \lnot C) \lor (\lnot C \land (\lnot A \lor B))
+        && \textit{Eliminate implications}\\
+        \nonumber
+        &\equiv (\lnot A \land C) \lor (\lnot C \land (\lnot A \lor B))
+        && \textit{Move negations inside}\\
+        \nonumber
+        &\equiv (\lnot A \lor (\lnot C \land (\lnot A \lor B))) \land (C \lor (\lnot C \land (\lnot A \lor B)))
+        && \textit{Distribute $\lor$ over $\land$}\\
+        \nonumber
+        &\equiv ((\lnot C \lor \lnot A) \land ((\lnot A \lor B) \lor \lnot A)) \land
+        ((\lnot C \lor C) \land ((\lnot A \lor B) \lor C))
+        && \textit{Distribute $\lor$ over $\land$}\\
+        \nonumber
+        &\equiv (\lnot C \lor \lnot A) \land (\lnot A \lor B \lor \lnot A) \land
+        (\lnot C \lor C) \land (\lnot A \lor B \lor C)
+        && \textit{Apply associativity}\\
+        \nonumber
+        &\equiv \underline{(\lnot C \lor \lnot A) \land (\lnot A \lor B) \land
+        (\lnot A \lor B \lor C)}
+        && \textit{Simplify}\\
+        \nonumber
+    \end{align}
+\end{enumerate}
 
 \section*{Statement on scientific integrity}
 
