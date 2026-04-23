@@ -26,6 +26,7 @@
 \usepackage{chessfss} % contained in debian package texlive-games
 
 \usepackage{listings}   % include & display python code
+\usepackage[edges]{forest}  % for search trees
 
 \tikzset{WhiteSquare/.style = {shape=rectangle, minimum width=28, minimum
     height=28, anchor=south west}}
@@ -136,8 +137,124 @@ $\varphi = ((A \lor \lnot C) \rightarrow (\lnot C \land (\lnot A \lor B)))$
 \end{enumerate}
 
 \section{}
-
+\begin{enumerate}[(a)]
+    \item DPLL on
+$\Delta = \{ \{ \lnot A, C\}, \{ A, B, E\} , \{ \lnot B, \lnot D\} , \{ \lnot B, \lnot E\}, \{ \lnot C, D, E\} , \{ B, \lnot C, E\} , \{ B, \lnot E\} \} $:
+\begin{center}
+\begin{forest}
+for tree={
+    draw,
+    rounded corners,
+    align=center,
+    parent anchor=south,
+    child anchor=north,
+    edge={->},
+}
+[$\Delta$
+    [splitting rule
+        [{$A \mapsto$ T\\
+        $\left\{
+        \begin{aligned}
+            &\{ C \}, \\
+            &\{ \lnot B, \lnot D \}, \\
+            &\{ \lnot B, \lnot E \}, \\
+            &\{ \lnot C, D, E \}, \\
+            &\{ B, \lnot C, E \}, \\
+            &\{ B, \lnot E \}
+        \end{aligned}
+        \right\}$}
+            [unit propagation\\$C \mapsto$ T\\
+            $\left\{
+            \begin{aligned}
+                & \{ \lnot B\text{,} \lnot D \}\text{,} \\
+                & \{ \lnot B\text{,} \lnot E \}\text{,} \\
+                & \{ D\text{,} E \}\text{,} \\
+                & \{ B\text{,} E \}\text{,} \\
+                & \{ B\text{,} \lnot E \}
+            \end{aligned}
+            \right\}$
+                [splitting rule
+                    [$B \mapsto$ T\\
+                    $\{ \{ \lnot D \} \text{,}
+                    \{ \lnot E \} \text{,}
+                    \{ D \text{,} E \} \}$
+                        [unit propagation\\$ D \mapsto$ F\\
+                        $\{ \{ \lnot E \} \text{,} \{ E \} \}$
+                            [unit propagation\\$E \mapsto$ T\\
+                            $\{ \bot \}$
+                            ]
+                        ]
+                    ]
+                    [$B \mapsto$ F\\
+                    $\{ \{ D \text{,} E \} \text{,}
+                    \{ E \} \text{,}
+                    \{ \lnot E \} \}$
+                        [unit propagation\\$ E \mapsto$ T\\
+                        $\{ \bot \} $
+                        ]
+                    ]
+                ]
+            ]
+        ]
+        [{$A \mapsto$ F\\
+        $\left\{
+        \begin{aligned}
+            &\{ B, E \}, \\
+            &\{ \lnot B, \lnot D \}, \\
+            &\{ \lnot B, \lnot E \}, \\
+            &\{ \lnot C, D, E \}, \\
+            &\{ B, \lnot C, E \}, \\
+            &\{ B, \lnot E \}
+        \end{aligned}
+        \right\}$}
+            [splitting rule
+                [$B \mapsto$ T\\
+                $\left\{
+                \begin{aligned}
+                    & \{ \lnot D \} \text{,}\\
+                    & \{ \lnot E \} \text{,}\\
+                    & \{ \lnot C \text{,} D \text{,} E \}
+                \end{aligned}
+                \right\}$
+                    [unit propagation\\$D \mapsto$ F\\
+                    $\{ \{ \lnot E \} \text{,} \{ \lnot C \text{,} E \} \}$
+                        [unit propagation\\$E \mapsto$ F\\
+                        $\{ \{ \lnot C \} \}$
+                            [unit propagation\\$C \mapsto$ F\\
+                            $\{ \top \}$
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+\end{forest}
+\end{center}
+The algorithm will return the interpretation:
+$I = \{
+    A \mapsto$ F$,
+    B \mapsto$ T$,
+    C \mapsto$ F$,
+    D \mapsto$ F$,
+    E \mapsto$ F$
+\}$
+\newpage
+\item Always assigning F first will result in a smaller tree (that is, a tree with less nodes),
+because in the $\Delta$ all clauses contain at most one literal without negation.
+Consequently, every clause would have at most one positive literal. This results in a Horn
+formula and as shown in the lecture E4 the generated search tree for $n$ variables can only at
+most $n$ nodes where the splitting rule is applied.\\
+With $\Delta$ from (a), by assigning F always first the algorithm would take the right
+main branch in the search tree ($A \mapsto$ F), then first assign F to $B$ but this is a
+dead end with just one unit propagation node resulting in $\{ \bot \}$. By backtracking,
+$B$ then is assigned again T and the same last three nodes are expanded as in the tree in (a).
+\end{enumerate}
 
 \section*{Statement on scientific integrity}
+We asked \texttt{ChatGPT} and \texttt{Copilot} for help when dealing with LaTex-specific
+problems like the search tree in 3(a).\\
+Content-wise, we did not use any help; we solved the entire exercise sheet on our own.
 
 \end{document}
