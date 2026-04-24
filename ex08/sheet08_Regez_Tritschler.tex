@@ -72,7 +72,7 @@ $\varphi = ((A \lor \lnot C) \rightarrow (\lnot C \land (\lnot A \lor B)))$
     \end{itemize}
     % Transform φ into CNF using the equivalences from Chapter E2. Provide all intermediate
     % formulas that result from applying an equivalence transformation.
-    \item We will transform $\varphi$ into CNF:
+    \item We will transform $\varphi$ into CNF:\\[-1.8em]
     \begin{align}
         \nonumber
         \varphi &= (A \lor \lnot C) \rightarrow (\lnot C \land (\lnot A \lor B))\\
@@ -94,9 +94,12 @@ $\varphi = ((A \lor \lnot C) \rightarrow (\lnot C \land (\lnot A \lor B)))$
         (\lnot C \lor C) \land (\lnot A \lor B \lor C)
         && \textit{Apply associativity}\\
         \nonumber
-        &\equiv \underline{(\lnot C \lor \lnot A) \land (\lnot A \lor B) \land
-        (\lnot A \lor B \lor C)}
+        &\equiv (\lnot C \lor \lnot A) \land (\lnot A \lor B) \land
+        (\lnot A \lor B \lor C)
         && \textit{Simplify}\\
+        \nonumber
+        &\equiv \underline{(\lnot C \lor \lnot A) \land (\lnot A \lor B)}
+        && \textit{Simplify}
         \nonumber
     \end{align}
 \end{enumerate}
@@ -241,12 +244,7 @@ $I = \{
     E \mapsto$ F$
 \}$
 \newpage
-\item Always assigning F first will result in a smaller tree (that is, a tree with less nodes),
-because in the $\Delta$ all clauses contain at most one literal without negation.
-Consequently, every clause would have at most one positive literal. This results in a Horn
-formula and as shown in the lecture E4 the generated search tree for $n$ variables can only at
-most $n$ nodes where the splitting rule is applied.\\
-With $\Delta$ from (a), by assigning F always first the algorithm would take the right
+\item With $\Delta$ from (a), by assigning F always first the algorithm would take the right
 main branch in the search tree ($A \mapsto$ F), then first assign F to $B$ but this is a
 dead end with just one unit propagation node resulting in $\{ \bot \}$. By backtracking,
 $B$ then is assigned again T and the same last three nodes are expanded as in the tree in (a).
