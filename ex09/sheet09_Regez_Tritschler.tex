@@ -82,6 +82,82 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
     the entire formula to be satisfied.
 \end{enumerate}
 
+\section{}
+\begin{enumerate}[(a)]
+    \item STRIPS planning task $\Pi = \langle
+        V, I, G, A
+    \rangle$ with
+    \begin{itemize}
+        \item $V = 
+        \text{loc}_{\text{MB}},
+        \text{loc}_{\text{OC}},
+        \text{loc}_{\text{TM}},
+        $
+        \item $I =
+        \text{loc}_{\text{MB}},
+        \text{belly}_{\text{empty}},
+        \text{temp}_{\text{warm}}
+        $
+        \item $G = \{
+            \text{loc}_{\text{OC}},
+            \text{temp}_{\text{cold}},
+            \text{belly}_\text{icecream}
+        \}$
+        \item $A =
+        \{ 
+           \{ \text{move}_{X,Y} \mid X, Y \in \{ \text{MB, OC, TM} \}, X \neq Y \},\\
+           \text{swim}_\text{TM, MB},\\
+           \text{eat}_\text{MB},\\
+           \text{eat}_\text{OC}
+        \}
+        $
+    \end{itemize}
+    where
+    \begin{itemize}
+        \item $pre(\text{move}_{X,Y}) = \{ \text{loc}_X \},
+        \ \forall X, Y \in \{ \text{MB, OC, TM} \}$,
+        \item $add(\text{move}_{X,Y}) = \{ \text{loc}_Y \},
+        \ \forall X, Y \in \{ \text{MB, OC, TM} \}$,
+        \item $del(\text{move}_{X,Y}) = \{ \text{loc}_X \},
+        \ \forall X, Y \in \{ \text{MB, OC, TM} \}$,
+        \item $cost(\text{move}_{X,Y}) = 1,
+        \ \forall X, Y \in \{ \text{MB, OC, TM} \}$,
+        \item $pre(\text{swim}_\text{TM, MB}) =
+        \{ \text{loc}_\text{TM} \}$,
+        \item $add(\text{swim}_\text{TM, MB}) =
+        \{ \text{loc}_\text{MB} \}$,
+        \item $del(\text{swim}_\text{TM, MB}) =
+        \{ \text{loc}_\text{TM} \}$,
+        \item $cost(\text{swim}_\text{TM, MB}) = 1$,
+        \item $pre(\text{eat}_\text{MB}) =
+        \{ \text{loc}_\text{MB}, \text{belly}_\text{empty} \}$,
+        \item $add(\text{eat}_\text{MB}) =
+        \{ \text{belly}_\text{icecream} \}$,
+        \item $del(\text{eat}_\text{MB}) =
+        \{ \text{belly}_\text{empty} \}$,
+        \item $cost(\text{eat}_\text{MB}) = 1$,
+        \item $pre(\text{eat}_\text{OC}) =
+        \{ \text{loc}_\text{OC}, \text{belly}_\text{empty} \}$,
+        \item $add(\text{eat}_\text{OC}) =
+        \{ \text{belly}_\text{icecream} \}$,
+        \item $del(\text{eat}_\text{OC}) =
+        \{ \text{belly}_\text{empty} \}$,
+        \item $cost(\text{eat}_\text{OC}) = 0.5$
+    \end{itemize}
+    The cost for the actions represent the estimated time needed for
+    the respective action. When swimming down the Rhine one also needs
+    time to change, so this is more expensive than just moving by feet.
+    Additionally, in this scenario, time is the most decisive
+    factor because you really don't want to be late for the exam.
+    \item $\pi = \langle
+        \text{swim}_\text{TM, MB},
+        \text{move}_\text{MB, OC},
+        \text{eat}_\text{OC}
+    \rangle$
+\end{enumerate}
+
+\section{}
+
 
 \section*{Statement on scientific integrity}
 
