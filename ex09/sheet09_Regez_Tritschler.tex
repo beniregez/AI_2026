@@ -52,7 +52,35 @@
 
 \begin{document}
 
-\section{}
+\section{Phase transitions for CNF formulas}
+CNF formula $
+    \varphi =
+    \underbrace{(\ell_{11} \lor \ell_{12} \lor ... \lor \ell_{1k})}_{\text{clause } 1}
+    \land
+    \underbrace{(\ell_{21} \lor \ell_{22} \lor ... \lor \ell_{2k})}_{\text{clause } 2}
+    \land
+    ...
+    \land
+    \underbrace{(\ell_{m1} \lor \ell_{m2} \lor ... \lor \ell_{mk})}_{\text{clause } m}
+$\\[1em]
+with $n$ variables, $m$ clauses, and $k$ variables in each clause
+\begin{enumerate}[(a)]
+    \item Varying $k$ while fixing $n$ and $m$:\\[0.5em]
+    For large values $k$, this will lead to an
+    under-constrained region: For every
+    additional variable in a clause, the clause
+    has more "possibilities" to be satisfied and
+    thus, with a large number of variables in each
+    clause, the entire formula is more likely to be
+    satisfied.
+    \item Varying $n$ while fixing $m$ and $k$\\[0.5em]
+    For large values $n$, this will lead to an
+    over-constrained region: If the number of
+    different variables occurring in the clauses
+    increases, the number of variables that need
+    to be set to "true" must also increase for
+    the entire formula to be satisfied.
+\end{enumerate}
 
 
 \section*{Statement on scientific integrity}
