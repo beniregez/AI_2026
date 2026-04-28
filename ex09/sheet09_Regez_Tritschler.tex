@@ -157,7 +157,25 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
 \end{enumerate}
 
 \section{}
-
+\begin{enumerate}[(a)]
+    \item Graphical representation of the problem:\\[0.5em]
+        \begin{tikzpicture}[->,>=stealth',auto,node distance=3.5cm]
+        \node[state] (A) {altstadt};
+        \node[state, initial, initial text=, right of=A] (K) {kneiphof};
+        \node[state, right of=K] (L) {lomse};
+        \node[state, below of=K] (V) {vorstadt};
+        \path[-, bend right] (A) edge node {} (K);
+        \path[-, bend left] (A) edge node {} (K);
+        \path[-, bend right] (K) edge node {} (V);
+        \path[-, bend left] (K) edge node {} (V);
+        \path[-, bend left] (A) edge node {} (L);
+        \path[-] (K) edge node {} (L);
+        \path[-] (V) edge node {} (L);
+    \end{tikzpicture}
+    \item TODO
+    \item TODO
+    \item TODO
+\end{enumerate}
 
 \section*{Statement on scientific integrity}
 
