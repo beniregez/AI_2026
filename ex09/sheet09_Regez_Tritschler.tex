@@ -128,7 +128,7 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
         \{ \text{loc}_\text{MB} \}$,
         \item $del(\text{swim}_\text{TM, MB}) =
         \{ \text{loc}_\text{TM} \}$,
-        \item $cost(\text{swim}_\text{TM, MB}) = 1$,
+        \item $cost(\text{swim}_\text{TM, MB}) = 2$,
         \item $pre(\text{eat}_\text{MB}) =
         \{ \text{loc}_\text{MB}, \text{belly}_\text{empty} \}$,
         \item $add(\text{eat}_\text{MB}) =
@@ -142,7 +142,7 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
         \{ \text{belly}_\text{icecream} \}$,
         \item $del(\text{eat}_\text{OC}) =
         \{ \text{belly}_\text{empty} \}$,
-        \item $cost(\text{eat}_\text{OC}) = 0.5$
+        \item $cost(\text{eat}_\text{OC}) = 1$
     \end{itemize}
     The cost for the actions represent the estimated time needed for
     the respective action. When swimming down the Rhine one also needs
@@ -153,7 +153,8 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
         \text{swim}_\text{TM, MB},
         \text{move}_\text{MB, OC},
         \text{eat}_\text{OC}
-    \rangle$
+    \rangle$\\[0.5em]
+    $cost(\pi) = 2 + 1 + 1 = 4$
 \end{enumerate}
 
 \section{}
