@@ -182,9 +182,62 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
         \item $\rightarrow$ Since no solution is found,
         we cannot discuss whether it is optimal or not.
     \end{enumerate}
-    \item TODO
-    \item TODO
+    \item By commenting out line 24 in
+    \texttt{bridges-once-domain.pddl}:\\
+    \texttt{(bridge-has-not-been-used ?b)}\\
+    we can prevent the algorithm to check whether
+    the bridge has been already used.
+    Consequently, the algorithm can use the same
+    bridge more than once.
+    \begin{enumerate}[]
+        \item Total time: 0.024720s
+        \item Expanded 10 state(s).
+    \end{enumerate}
+    \texttt{fast-downward} finds a solution, thus,
+    the problem is now solvable:
+    \begin{enumerate}[]
+        \item cross-bridge koettelbruecke kneiphof vorstadt (1)
+        \item cross-bridge gruene-bruecke vorstadt kneiphof (1)
+        \item cross-bridge schmiedebruecke kneiphof altstadt (1)
+        \item cross-bridge holzbruecke altstadt lomse (1)
+        \item cross-bridge honigbruecke lomse kneiphof (1)
+        \item cross-bridge gruene-bruecke kneiphof vorstadt (1)
+        \item cross-bridge hohe-bruecke vorstadt lomse (1)
+        \item cross-bridge holzbruecke lomse altstadt (1)
+        \item cross-bridge kraemerbruecke altstadt kneiphof (1)
+    \end{enumerate}
+    \item Another problem instance of the bridges domain:
+     \begin{enumerate}[]
+        \item Total time: 0.032434s
+        \item Expanded 14 state(s)
+     \end{enumerate}
+    The solution is optimal, because in this problem domain,
+    every solution is optimal: All edges must be
+    used exactly once, so every solution of a problem
+    instance has the same length as all solutions of
+    this instance.\\
+    Since the problem has at least one solution, it is
+    solvable.\\
+    Plan:
+    \begin{enumerate}[]
+        \item cross-bridge v13 n1 n3 (1)
+        \item cross-bridge v23 n3 n2 (1)
+        \item cross-bridge v26 n2 n6 (1)
+        \item cross-bridge v36 n6 n3 (1)
+        \item cross-bridge v38 n3 n8 (1)
+        \item cross-bridge v18 n8 n1 (1)
+        \item cross-bridge v14 n1 n4 (1)
+        \item cross-bridge v46 n4 n6 (1)
+        \item cross-bridge v68 n6 n8 (1)
+        \item cross-bridge v48 n8 n4 (1)
+        \item cross-bridge v47 n4 n7 (1)
+        \item cross-bridge v57 n7 n5 (1)
+        \item cross-bridge v15 n5 n1 (1)
+    \end{enumerate}
 \end{enumerate}
+
+\section{}
+TODO
 
 \section*{Statement on scientific integrity}
 
