@@ -172,7 +172,15 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
         \path[-] (K) edge node {} (L);
         \path[-] (V) edge node {} (L);
     \end{tikzpicture}
-    \item TODO
+    \item Greedy best-first search on
+    \texttt{koenigsberg-problem.pddl} with
+    \texttt{fast-downward}. Result:
+    \begin{enumerate}[]
+        \item Total time: 0.021764s
+        \item Expanded 45 state(s)
+        \item $\rightarrow$ Since no solution is found,
+        we cannot discuss whether it is optimal or not.
+    \end{enumerate}
     \item TODO
     \item TODO
 \end{enumerate}
