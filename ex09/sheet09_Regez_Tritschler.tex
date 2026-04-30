@@ -237,9 +237,29 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
 \end{enumerate}
 
 \section{}
-TODO
+% Specify a STRIPS planning task Π which is
+% unsolvable butwhose delete relaxation
+% Π+ is solvable.
+We will specify a STRIPS planning task $\Pi$ which
+is unsolvable but whose delete relaxation $\Pi^+$
+is solvable:\\[0.5em]
+$\Pi = \langle
+    V, I, G, A
+\rangle$ with
+\begin{itemize}
+    \item $V = \{ A, B, C \}$
+    \item $I = \{ A, C \}$
+    \item $G = \{ B, C \}$
+    \item $A = \{ a \}$ with
+    \begin{itemize}
+        \item $pre(a) = \{ A, C \}$
+        \item $add(a) = \{ B \}$
+        \item $del(a) = \{ C \}$
+        \item $cost(a) = 1$
+    \end{itemize}
+\end{itemize}
 
 \section*{Statement on scientific integrity}
-
+We solved the entire exercise sheet on our own.
 
 \end{document}
