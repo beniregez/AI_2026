@@ -67,19 +67,26 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
 \begin{enumerate}[(a)]
     \item Varying $k$ while fixing $n$ and $m$:\\[0.5em]
     For large values $k$, this will lead to an
-    under-constrained region: For every
+    \textbf{under-constrained region}: For every
     additional variable in a clause, the clause
     has more "possibilities" to be satisfied and
     thus, with a large number of variables in each
     clause, the entire formula is more likely to be
     satisfied.
-    \item Varying $n$ while fixing $m$ and $k$\\[0.5em]
+    \item Varying $n$ while fixing $m$ and $k$:\\[0.5em]
     For large values $n$, this will lead to an
-    over-constrained region: If the number of
-    different variables occurring in the clauses
-    increases, the number of variables that need
-    to be set to "true" must also increase for
-    the entire formula to be satisfied.
+    \textbf{under-constrained region}.
+    Proof sketch: Let's assume, two
+    literals $l_1, l_2$ within the same clause of
+    a CNF formula $\varphi_1$ are being represented
+    by the same variable.
+    Furthermore, let another CNF formula $\varphi_2$
+    consisting of the exact same clauses with the
+    only difference that $l_2$ is represented by a
+    different and additional variable, then the
+    clause containing $l_1, l_2$ has more
+    "possibilities" to be satisfiable and thus
+    $\varphi_2$ is more likely to be satisiable. 
 \end{enumerate}
 
 \section{}
