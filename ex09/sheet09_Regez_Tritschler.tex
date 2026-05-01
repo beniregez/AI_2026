@@ -92,6 +92,10 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
         \text{loc}_{\text{MB}},
         \text{loc}_{\text{OC}},
         \text{loc}_{\text{TM}},
+        \text{belly}_{\text{empty}},
+        \text{belly}_{\text{icecream}},
+        \text{temp}_{\text{cold}}
+        \text{temp}_{\text{warm}}
         $
         \item $I =
         \text{loc}_{\text{MB}},
@@ -150,11 +154,12 @@ with $n$ variables, $m$ clauses, and $k$ variables in each clause
     Additionally, in this scenario, time is the most decisive
     factor because you really don't want to be late for the exam.
     \item $\pi = \langle
+        \text{move}_\text{MB, TM},
         \text{swim}_\text{TM, MB},
         \text{move}_\text{MB, OC},
         \text{eat}_\text{OC}
     \rangle$\\[0.5em]
-    $cost(\pi) = 2 + 1 + 1 = 4$
+    $cost(\pi) = 1 + 2 + 1 + 1 = 5$
 \end{enumerate}
 
 \section{}
