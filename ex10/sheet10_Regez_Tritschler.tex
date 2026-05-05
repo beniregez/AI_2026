@@ -56,44 +56,44 @@
 \begin{enumerate}[(a)]
     \item $h^*(I) = 3$
     \item $h^+(I) = 3$
-    \item RPG for $\Pi$:\\[1em]
+    \item RPG for $\Pi$:
     \begin{center}
     \begin{tikzpicture}[
-    node distance=1cm and 1.5cm,
+    node distance=0.6cm and 0.5cm,
     every node/.style={font=\small},
     state/.style={circle, draw, fill=yellow!80, minimum size=8mm},
     action/.style={rectangle, draw, fill=blue!40, minimum size=8mm},
-    goal/.style={rectangle, draw, fill=red!80, minimum size=10mm}
+    goal/.style={rectangle, draw, fill=red!40, minimum size=8mm}
     ]
     % Layer 0
     \node[state] (a0) {$a^0$};
     \node[state, below=of a0] (b0) {$b^0$};
     % Actions between 0 and 1
-    \node[action, below right=0.2cm and 1.5cm of a0] (a11) {$a_1$};
+    \node[action, below right=0cm and 1cm of a0] (a11) {$a_1$};
     \draw[->] (a0) -- (a11);
-    \node[action, below right=0.2cm and 1.5cm of b0] (a12) {$a_2$};
+    \node[action, below right=0cm and 1cm of b0] (a12) {$a_2$};
     \draw[->] (b0) -- (a12);
     % Layer 1
-    \node[state, above right=0.2cm and 1.5 of a11] (a1) {$a^1$};
+    \node[state, above right=0cm and 1cm of a11] (a1) {$a^1$};
     \draw[->] (a0) -- (a1);
-    \node[state, above right=0.2cm and 1.5 of a12] (b1) {$b^1$};
+    \node[state, above right=0cm and 1cm of a12] (b1) {$b^1$};
     \draw[->] (b0) -- (b1);
     \node[state, below=of b1] (c1) {$c^1$};
     \draw[->] (a11) -- (c1);
     \node[state, below=of c1] (d1) {$d^1$};
     \draw[->] (a12) -- (d1);
     % Actions between 1 and 2
-    \node[action, below right=0.2cm and 1.5cm of a1] (a21) {$a_1$};
+    \node[action, below right=0cm and 1cm of a1] (a21) {$a_1$};
     \draw[->] (a1) -- (a21);
-    \node[action, below right=0.2cm and 1.5cm of b1] (a22) {$a_2$};
+    \node[action, below right=0cm and 1cm of b1] (a22) {$a_2$};
     \draw[->] (b1) -- (a22);
-    \node[action, below right=0.2cm and 1.5cm of c1] (a23) {$a_3$};
+    \node[action, below right=0cm and 1cm of c1] (a23) {$a_3$};
     \draw[->] (c1) -- (a23);
     \draw[->] (d1) -- (a23);
     % Layer 2
-    \node[state, above right=0.2cm and 1.5 of a21] (a2) {$a^2$};
+    \node[state, above right=0cm and 1cm of a21] (a2) {$a^2$};
     \draw[->] (a1) -- (a2);
-    \node[state, above right=0.2cm and 1.5 of a22] (b2) {$b^2$};
+    \node[state, above right=0cm and 1cm of a22] (b2) {$b^2$};
     \draw[->] (b1) -- (b2);
     \node[state, below=of b2] (c2) {$c^2$};
     \draw[->] (a21) -- (c2);
@@ -106,17 +106,17 @@
     \node[state, below=of e2] (f2) {$f^2$};
     \draw[->] (a23) -- (f2);
     % Actions between 2 and 3
-    \node[action, below right=0.2cm and 1.5cm of a2] (a31) {$a_1$};
+    \node[action, below right=0cm and 1cm of a2] (a31) {$a_1$};
     \draw[->] (a2) -- (a31);
-    \node[action, below right=0.2cm and 1.5cm of b2] (a32) {$a_2$};
+    \node[action, below right=0cm and 1cm of b2] (a32) {$a_2$};
     \draw[->] (b2) -- (a32);
-    \node[action, below right=0.2cm and 1.5cm of c2] (a33) {$a_3$};
+    \node[action, below right=0cm and 1cm of c2] (a33) {$a_3$};
     \draw[->] (c2) -- (a33);
     \draw[->] (d2) -- (a33);
     % Layer 3 = n
-    \node[state, above right=0.2cm and 1.5 of a31] (a3) {$a^3$};
+    \node[state, above right=0cm and 1cm of a31] (a3) {$a^3$};
     \draw[->] (a2) -- (a3);
-    \node[state, above right=0.2cm and 1.5 of a32] (b3) {$b^3$};
+    \node[state, above right=0cm and 1cm of a32] (b3) {$b^3$};
     \draw[->] (b2) -- (b3);
     \node[state, below=of b3] (c3) {$c^3$};
     \draw[->] (a31) -- (c3);
@@ -130,16 +130,296 @@
     \node[state, below=of e3] (f3) {$f^3$};
     \draw[->] (a33) -- (f3);
     \draw[->] (f2) -- (f3);
+    % goal node
+    \node[goal, below right=0cm and 1cm of e3] (g) {$g$};
+    \draw[->] (e3) -- (g);
+    \draw[->] (f3) -- (g);
     \end{tikzpicture}
     \end{center}
-    \item TODO
-    \item TODO
-    \item TODO
+    
+    \newpage
+    \item $h^{max}(I)$:
+    \begin{center}
+    \begin{tikzpicture}[
+    node distance=0.6cm and 0.5cm,
+    every node/.style={font=\small},
+    state/.style={circle, draw, fill=yellow!80, minimum size=8mm},
+    action/.style={rectangle, draw, fill=blue!40, minimum size=8mm},
+    goal/.style={rectangle, draw, fill=red!40, minimum size=8mm}
+    ]
+    % Layer 0
+    \node[state] (a0) {$0$};
+    \node[state, below=of a0] (b0) {$0$};
+    % Actions between 0 and 1
+    \node[action, below right=0cm and 1cm of a0] (a11) {$1$};
+    \draw[->] (a0) -- (a11);
+    \node[action, below right=0cm and 1cm of b0] (a12) {$1$};
+    \draw[->] (b0) -- (a12);
+    % Layer 1
+    \node[state, above right=0cm and 1cm of a11] (a1) {$0$};
+    \draw[->] (a0) -- (a1);
+    \node[state, above right=0cm and 1cm of a12] (b1) {$0$};
+    \draw[->] (b0) -- (b1);
+    \node[state, below=of b1] (c1) {$1$};
+    \draw[->] (a11) -- (c1);
+    \node[state, below=of c1] (d1) {$1$};
+    \draw[->] (a12) -- (d1);
+    % Actions between 1 and 2
+    \node[action, below right=0cm and 1cm of a1] (a21) {$1$};
+    \draw[->] (a1) -- (a21);
+    \node[action, below right=0cm and 1cm of b1] (a22) {$1$};
+    \draw[->] (b1) -- (a22);
+    \node[action, below right=0cm and 1cm of c1] (a23) {$2$};
+    \draw[->] (c1) -- (a23);
+    \draw[->] (d1) -- (a23);
+    % Layer 2
+    \node[state, above right=0cm and 1cm of a21] (a2) {$0$};
+    \draw[->] (a1) -- (a2);
+    \node[state, above right=0cm and 1cm of a22] (b2) {$0$};
+    \draw[->] (b1) -- (b2);
+    \node[state, below=of b2] (c2) {$1$};
+    \draw[->] (a21) -- (c2);
+    \draw[->] (c1) -- (c2);
+    \node[state, below=of c2] (d2) {$1$};
+    \draw[->] (a22) -- (d2);
+    \draw[->] (d1) -- (d2);
+    \node[state, below=of d2] (e2) {$2$};
+    \draw[->] (a23) -- (e2);
+    \node[state, below=of e2] (f2) {$2$};
+    \draw[->] (a23) -- (f2);
+    % Actions between 2 and 3
+    \node[action, below right=0cm and 1cm of a2] (a31) {$1$};
+    \draw[->] (a2) -- (a31);
+    \node[action, below right=0cm and 1cm of b2] (a32) {$1$};
+    \draw[->] (b2) -- (a32);
+    \node[action, below right=0cm and 1cm of c2] (a33) {$2$};
+    \draw[->] (c2) -- (a33);
+    \draw[->] (d2) -- (a33);
+    % Layer 3 = n
+    \node[state, above right=0cm and 1 of a31] (a3) {$0$};
+    \draw[->] (a2) -- (a3);
+    \node[state, above right=0cm and 1 of a32] (b3) {$0$};
+    \draw[->] (b2) -- (b3);
+    \node[state, below=of b3] (c3) {$1$};
+    \draw[->] (a31) -- (c3);
+    \draw[->] (c2) -- (c3);
+    \node[state, below=of c3] (d3) {$1$};
+    \draw[->] (a32) -- (d3);
+    \draw[->] (d2) -- (d3);
+    \node[state, below=of d3] (e3) {$2$};
+    \draw[->] (a33) -- (e3);
+    \draw[->] (e2) -- (e3);
+    \node[state, below=of e3] (f3) {$2$};
+    \draw[->] (a33) -- (f3);
+    \draw[->] (f2) -- (f3);
+    % goal node
+    \node[goal, below right=0cm and 1cm of e3] (g) {$2$};
+    \draw[->] (e3) -- (g);
+    \draw[->] (f3) -- (g);
+    % Labels action nodes
+    \node at ($(a11.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a12.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a21.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a22.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a23.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a31.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a32.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a33.east)+(10pt,5pt)$) {$+1$};
+    \end{tikzpicture}
+    \end{center}
+    
+    \item $h^{add}(I)$:
+    \begin{center}
+    \begin{tikzpicture}[
+    node distance=0.6cm and 0.5cm,
+    every node/.style={font=\small},
+    state/.style={circle, draw, fill=yellow!80, minimum size=8mm},
+    action/.style={rectangle, draw, fill=blue!40, minimum size=8mm},
+    goal/.style={rectangle, draw, fill=red!40, minimum size=8mm}
+    ]
+    % Layer 0
+    \node[state] (a0) {$0$};
+    \node[state, below=of a0] (b0) {$0$};
+    % Actions between 0 and 1
+    \node[action, below right=0cm and 1cm of a0] (a11) {$1$};
+    \draw[->] (a0) -- (a11);
+    \node[action, below right=0cm and 1cm of b0] (a12) {$1$};
+    \draw[->] (b0) -- (a12);
+    % Layer 1
+    \node[state, above right=0cm and 1cm of a11] (a1) {$0$};
+    \draw[->] (a0) -- (a1);
+    \node[state, above right=0cm and 1cm of a12] (b1) {$0$};
+    \draw[->] (b0) -- (b1);
+    \node[state, below=of b1] (c1) {$1$};
+    \draw[->] (a11) -- (c1);
+    \node[state, below=of c1] (d1) {$1$};
+    \draw[->] (a12) -- (d1);
+    % Actions between 1 and 2
+    \node[action, below right=0cm and 1cm of a1] (a21) {$1$};
+    \draw[->] (a1) -- (a21);
+    \node[action, below right=0cm and 1cm of b1] (a22) {$1$};
+    \draw[->] (b1) -- (a22);
+    \node[action, below right=0cm and 1cm of c1] (a23) {$3$};
+    \draw[->] (c1) -- (a23);
+    \draw[->] (d1) -- (a23);
+    % Layer 2
+    \node[state, above right=0cm and 1cm of a21] (a2) {$0$};
+    \draw[->] (a1) -- (a2);
+    \node[state, above right=0cm and 1cm of a22] (b2) {$0$};
+    \draw[->] (b1) -- (b2);
+    \node[state, below=of b2] (c2) {$2$};
+    \draw[->] (a21) -- (c2);
+    \draw[->] (c1) -- (c2);
+    \node[state, below=of c2] (d2) {$2$};
+    \draw[->] (a22) -- (d2);
+    \draw[->] (d1) -- (d2);
+    \node[state, below=of d2] (e2) {$3$};
+    \draw[->] (a23) -- (e2);
+    \node[state, below=of e2] (f2) {$3$};
+    \draw[->] (a23) -- (f2);
+    % Actions between 2 and 3
+    \node[action, below right=0cm and 1cm of a2] (a31) {$1$};
+    \draw[->] (a2) -- (a31);
+    \node[action, below right=0cm and 1cm of b2] (a32) {$1$};
+    \draw[->] (b2) -- (a32);
+    \node[action, below right=0cm and 1cm of c2] (a33) {$5$};
+    \draw[->] (c2) -- (a33);
+    \draw[->] (d2) -- (a33);
+    % Layer 3 = n
+    \node[state, above right=0cm and 1 of a31] (a3) {$0$};
+    \draw[->] (a2) -- (a3);
+    \node[state, above right=0cm and 1 of a32] (b3) {$0$};
+    \draw[->] (b2) -- (b3);
+    \node[state, below=of b3] (c3) {$3$};
+    \draw[->] (a31) -- (c3);
+    \draw[->] (c2) -- (c3);
+    \node[state, below=of c3] (d3) {$3$};
+    \draw[->] (a32) -- (d3);
+    \draw[->] (d2) -- (d3);
+    \node[state, below=of d3] (e3) {$8$};
+    \draw[->] (a33) -- (e3);
+    \draw[->] (e2) -- (e3);
+    \node[state, below=of e3] (f3) {$8$};
+    \draw[->] (a33) -- (f3);
+    \draw[->] (f2) -- (f3);
+    % goal node
+    \node[goal, below right=0cm and 1cm of e3] (g) {$16$};
+    \draw[->] (e3) -- (g);
+    \draw[->] (f3) -- (g);
+    % Labels action nodes
+    \node at ($(a11.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a12.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a21.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a22.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a23.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a31.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a32.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a33.east)+(10pt,5pt)$) {$+1$};
+    \end{tikzpicture}
+    \end{center}
+
+    \newpage
+    \item $h^{FF}(I)$, markings in green:
+    \begin{center}
+    \begin{tikzpicture}[
+    node distance=0.6cm and 0.5cm,
+    every node/.style={font=\small},
+    state/.style={circle, draw, fill=yellow!80, minimum size=8mm},
+    action/.style={rectangle, draw, fill=blue!40, minimum size=8mm},
+    goal/.style={rectangle, draw, fill=red!40, minimum size=8mm}
+    ]
+    % Layer 0
+    \node[state, draw=green] (a0) {$0$};
+    \node[state, draw=green, below=of a0] (b0) {$0$};
+    % Actions between 0 and 1
+    \node[action, draw=green, fill=green, below right=0cm and 1cm of a0] (a11) {$1$};
+    \draw[->, green] (a0) -- (a11);
+    \node[action, draw=green, fill=green, below right=0cm and 1cm of b0] (a12) {$1$};
+    \draw[->, green] (b0) -- (a12);
+    % Layer 1
+    \node[state, above right=0cm and 1cm of a11] (a1) {$0$};
+    \draw[->] (a0) -- (a1);
+    \node[state, above right=0cm and 1cm of a12] (b1) {$0$};
+    \draw[->] (b0) -- (b1);
+    \node[state, draw=green, below=of b1] (c1) {$1$};
+    \draw[->, green] (a11) -- (c1);
+    \node[state, draw=green, below=of c1] (d1) {$1$};
+    \draw[->, green] (a12) -- (d1);
+    % Actions between 1 and 2
+    \node[action, below right=0cm and 1cm of a1] (a21) {$1$};
+    \draw[->] (a1) -- (a21);
+    \node[action, below right=0cm and 1cm of b1] (a22) {$1$};
+    \draw[->] (b1) -- (a22);
+    \node[action, draw=green, fill=green, below right=0cm and 1cm of c1] (a23) {$3$};
+    \draw[->, green] (c1) -- (a23);
+    \draw[->, green] (d1) -- (a23);
+    % Layer 2
+    \node[state, above right=0cm and 1cm of a21] (a2) {$0$};
+    \draw[->] (a1) -- (a2);
+    \node[state, above right=0cm and 1cm of a22] (b2) {$0$};
+    \draw[->] (b1) -- (b2);
+    \node[state, below=of b2] (c2) {$2$};
+    \draw[->] (a21) -- (c2);
+    \draw[->] (c1) -- (c2);
+    \node[state, below=of c2] (d2) {$2$};
+    \draw[->] (a22) -- (d2);
+    \draw[->] (d1) -- (d2);
+    \node[state, draw=green, below=of d2] (e2) {$3$};
+    \draw[->, green] (a23) -- (e2);
+    \node[state, draw=green, below=of e2] (f2) {$3$};
+    \draw[->, green] (a23) -- (f2);
+    % Actions between 2 and 3
+    \node[action, below right=0cm and 1cm of a2] (a31) {$1$};
+    \draw[->] (a2) -- (a31);
+    \node[action, below right=0cm and 1cm of b2] (a32) {$1$};
+    \draw[->] (b2) -- (a32);
+    \node[action, below right=0cm and 1cm of c2] (a33) {$5$};
+    \draw[->] (c2) -- (a33);
+    \draw[->] (d2) -- (a33);
+    % Layer 3 = n
+    \node[state, above right=0cm and 1 of a31] (a3) {$0$};
+    \draw[->] (a2) -- (a3);
+    \node[state, above right=0cm and 1 of a32] (b3) {$0$};
+    \draw[->] (b2) -- (b3);
+    \node[state, below=of b3] (c3) {$3$};
+    \draw[->] (a31) -- (c3);
+    \draw[->] (c2) -- (c3);
+    \node[state, below=of c3] (d3) {$3$};
+    \draw[->] (a32) -- (d3);
+    \draw[->] (d2) -- (d3);
+    \node[state, draw=green, below=of d3] (e3) {$8$};
+    \draw[->] (a33) -- (e3);
+    \draw[->, green] (e2) -- (e3);
+    \node[state, draw=green, below=of e3] (f3) {$8$};
+    \draw[->] (a33) -- (f3);
+    \draw[->, green] (f2) -- (f3);
+    % goal node
+    \node[goal, draw=green, below right=0cm and 1cm of e3] (g) {$16$};
+    \draw[->, green] (e3) -- (g);
+    \draw[->, green] (f3) -- (g);
+    % Labels action nodes
+    \node at ($(a11.east)+(10pt,5pt)$) {\color{green}$+1$};
+    \node at ($(a12.east)+(10pt,5pt)$) {\color{green}$+1$};
+    \node at ($(a21.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a22.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a23.east)+(10pt,5pt)$) {\color{green}$+1$};
+    \node at ($(a31.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a32.east)+(10pt,5pt)$) {$+1$};
+    \node at ($(a33.east)+(10pt,5pt)$) {$+1$};
+    \end{tikzpicture}
+    \end{center}
+    Resulting $h^{FF}(I) = 1 + 1 + 1 = \underline{\underline{3}}$
 \end{enumerate}
+
+\section{}
+TODO
+
+\section{}
+TODO
 
 \section*{Statement on scientific integrity}
 \begin{itemize}
-    \item For 10.1(c) we asked ChatGPT for help with the \texttt{tikzpicture} library
+    \item For 10.1(c) and 10.1(f), we asked ChatGPT for help with the \texttt{tikzpicture} library
 \end{itemize}
 Content-wise, we solved the entire exercise sheet on our own.
 
