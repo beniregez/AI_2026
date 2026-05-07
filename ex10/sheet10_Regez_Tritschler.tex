@@ -455,12 +455,61 @@ SAS$^+$ planning task $\Pi = \langle
     \end{itemize}
 \end{itemize}
 
+\newpage
 \section{}
-TODO
+\begin{enumerate}[(a)]
+    \item Abstract state space induced by projection to $P = \{ C, M \}$
+    \begin{center}
+    \begin{tikzpicture}[
+    node distance=0.5cm and 1cm,
+    ]
+    \node[state, align=center] (22) {$\langle 2, 2, L \rangle$,\\$\langle 2, 2, R \rangle$};
+    \node[state, align=center, above right=of 22] (21) {$\langle 2, 1, L \rangle$,\\$\langle 2, 1, R \rangle$};
+    \node[state, align=center, below right=of 22] (12) {$\langle 1, 2, L \rangle$,\\$\langle 1, 2, R \rangle$};
+    \node[state, align=center, above right=of 21] (20) {$\langle 2, 0, L \rangle$,\\$\langle 2, 0, R \rangle$};
+    \node[state, align=center, below right=of 21] (11) {$\langle 1, 1, L \rangle$,\\$\langle 1, 1, R \rangle$};
+    \node[state, align=center, below right=of 12] (02) {$\langle 0, 2, L \rangle$,\\$\langle 2, 0, R \rangle$};
+    \node[state, align=center, above right=of 11] (10) {$\langle 1, 0, L \rangle$,\\$\langle 1, 0, R \rangle$};
+    \node[state, align=center, below right=of 11] (01) {$\langle 0, 1, L \rangle$,\\$\langle 0, 1, R \rangle$};
+    \node[state, accepting, align=center, below right=of 10] (00) {$\langle 0, 0, L \rangle$,\\$\langle 0, 0, R \rangle$};
+    \draw[<->] (22) to[bend left=40] (20);
+    \draw[<->] (22) to[bend right=40] (02);
+    \draw[<->] (20) to[bend left=40] (00);
+    \draw[<->] (02) to[bend right=40] (00);
+    \draw[<->] (22) to (11);
+    \draw[<->] (11) to (00);
+    \draw[<->] (20) to (10);
+    \draw[<->] (10) to (00);
+    \draw[<->] (12) to[bend left=40] (10);
+    \draw[<->] (12) to (11);
+    \draw[<->] (11) to (10);
+    \draw[<->] (12) to (02);
+    \draw[<->] (22) to (12);
+    \end{tikzpicture}
+    \end{center}
+    \item Pattern database heuristic:
+    \begin{itemize}
+        \item $h^{\{C, M\}}(\{ \langle 0, 0, L \rangle, \langle 0, 0, R \rangle \}) = 0$
+        \item $h^{\{C, M\}}(\{ \langle 1, 0, L \rangle, \langle 1, 0, R \rangle \}) = 1$
+        \item $h^{\{C, M\}}(\{ \langle 0, 1, L \rangle, \langle 0, 1, R \rangle \}) = \infty$
+        \item $h^{\{C, M\}}(\{ \langle 2, 0, L \rangle, \langle 2, 0, R \rangle \}) = 1$
+        \item $h^{\{C, M\}}(\{ \langle 1, 1, L \rangle, \langle 1, 1, R \rangle \}) = 1$
+        \item $h^{\{C, M\}}(\{ \langle 0, 2, L \rangle, \langle 0, 2, R \rangle \}) = 1$
+        \item $h^{\{C, M\}}(\{ \langle 2, 1, L \rangle, \langle 2, 1, R \rangle \}) = \infty$
+        \item $h^{\{C, M\}}(\{ \langle 1, 2, L \rangle, \langle 1, 2, R \rangle \}) = 2$
+        \item $h^{\{C, M\}}(\{ \langle 2, 2, L \rangle, \langle 2, 2, R \rangle \}) = 2$
+    \end{itemize}
+    \item $h^{\{C, M\}}(I) = 2$
+    \item $h^{\{C, M\}}(I) = 2$ with $n$ cannibals and $n$ missionaries, because
+    we can either first move all $n$ missionaries to the right and then all $n$
+    cannibals to the right, or in the other order. Both sequences have the same
+    cost of 2.
+\end{enumerate}
+
 
 \section*{Statement on scientific integrity}
 \begin{itemize}
-    \item For 10.1(c) and 10.1(f), we asked ChatGPT for help with the \texttt{tikzpicture} library
+    \item For 10.1(c), 10.1(f), and 10.3(a) we asked ChatGPT for help with the \texttt{tikzpicture} library
 \end{itemize}
 Content-wise, we solved the entire exercise sheet on our own.
 
