@@ -412,7 +412,48 @@
 \end{enumerate}
 
 \section{}
-TODO
+SAS$^+$ planning task $\Pi = \langle
+    V, \ $dom$, I, G, A
+\rangle$ with:
+\begin{itemize}
+    \item $V = \{ T_1, T_2, ..., T_9 \}$
+    \item dom$(T_i) = \{ 0, 1, ..., 8 \} \ \forall i \in \{ 1, ..., 9 \}$
+    \item $I = \{
+        T_1 \mapsto 1, \
+        T_2 \mapsto 2, \
+        T_3 \mapsto 3, \
+        T_4 \mapsto 5, \
+        T_5 \mapsto 6, \
+        T_6 \mapsto 8, \
+        T_7 \mapsto 4, \
+        T_8 \mapsto 7, \
+        T_9 \mapsto 0
+    \}$
+    \item $G = \{
+        T_1 \mapsto 1, \
+        T_2 \mapsto 2, \
+        T_3 \mapsto 3, \
+        T_4 \mapsto 4, \
+        T_5 \mapsto 0, \
+        T_6 \mapsto 5, \
+        T_7 \mapsto 6, \
+        T_8 \mapsto 7, \
+        T_9 \mapsto 8
+    \}$
+    \item $A = \{ \text{switch}_{T_i, T_j} \mid
+    T_i, T_j \in V,
+    ((i = |j + 1|) \land \underbrace{(i \cdot j \not = 12) \land (i \cdot j \not = 42)}
+    _{\text{prevents illegal switch actions}}
+    ) \lor (i = |j + 3|),
+    T_i < T_j
+    \}$ with:
+    \begin{itemize}
+        \item switch$_{T_i, T_j}$ has preconditions $\{
+            T_i \mapsto 0, T_j \mapsto x
+        \}$, effects $\{ T_i \mapsto x, T_j \mapsto 0 \}$
+        \item cost(switch$_{T_i, T_j}) = 1$
+    \end{itemize}
+\end{itemize}
 
 \section{}
 TODO
