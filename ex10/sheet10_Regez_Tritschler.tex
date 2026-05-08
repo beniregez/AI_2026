@@ -267,10 +267,10 @@
     \draw[->] (a1) -- (a2);
     \node[state, above right=0cm and 1cm of a22] (b2) {$0$};
     \draw[->] (b1) -- (b2);
-    \node[state, below=of b2] (c2) {$2$};
+    \node[state, below=of b2] (c2) {$1$};
     \draw[->] (a21) -- (c2);
     \draw[->] (c1) -- (c2);
-    \node[state, below=of c2] (d2) {$2$};
+    \node[state, below=of c2] (d2) {$1$};
     \draw[->] (a22) -- (d2);
     \draw[->] (d1) -- (d2);
     \node[state, below=of d2] (e2) {$3$};
@@ -282,7 +282,7 @@
     \draw[->] (a2) -- (a31);
     \node[action, below right=0cm and 1cm of b2] (a32) {$1$};
     \draw[->] (b2) -- (a32);
-    \node[action, below right=0cm and 1cm of c2] (a33) {$5$};
+    \node[action, below right=0cm and 1cm of c2] (a33) {$3$};
     \draw[->] (c2) -- (a33);
     \draw[->] (d2) -- (a33);
     % Layer 3 = n
@@ -290,20 +290,20 @@
     \draw[->] (a2) -- (a3);
     \node[state, above right=0cm and 1 of a32] (b3) {$0$};
     \draw[->] (b2) -- (b3);
-    \node[state, below=of b3] (c3) {$3$};
+    \node[state, below=of b3] (c3) {$1$};
     \draw[->] (a31) -- (c3);
     \draw[->] (c2) -- (c3);
-    \node[state, below=of c3] (d3) {$3$};
+    \node[state, below=of c3] (d3) {$1$};
     \draw[->] (a32) -- (d3);
     \draw[->] (d2) -- (d3);
-    \node[state, below=of d3] (e3) {$8$};
+    \node[state, below=of d3] (e3) {$3$};
     \draw[->] (a33) -- (e3);
     \draw[->] (e2) -- (e3);
-    \node[state, below=of e3] (f3) {$8$};
+    \node[state, below=of e3] (f3) {$3$};
     \draw[->] (a33) -- (f3);
     \draw[->] (f2) -- (f3);
     % goal node
-    \node[goal, below right=0cm and 1cm of e3] (g) {$16$};
+    \node[goal, below right=0cm and 1cm of e3] (g) {$6$};
     \draw[->] (e3) -- (g);
     \draw[->] (f3) -- (g);
     % Labels action nodes
@@ -358,10 +358,10 @@
     \draw[->] (a1) -- (a2);
     \node[state, above right=0cm and 1cm of a22] (b2) {$0$};
     \draw[->] (b1) -- (b2);
-    \node[state, below=of b2] (c2) {$2$};
+    \node[state, below=of b2] (c2) {$1$};
     \draw[->] (a21) -- (c2);
     \draw[->] (c1) -- (c2);
-    \node[state, below=of c2] (d2) {$2$};
+    \node[state, below=of c2] (d2) {$1$};
     \draw[->] (a22) -- (d2);
     \draw[->] (d1) -- (d2);
     \node[state, draw=green, below=of d2] (e2) {$3$};
@@ -373,7 +373,7 @@
     \draw[->] (a2) -- (a31);
     \node[action, below right=0cm and 1cm of b2] (a32) {$1$};
     \draw[->] (b2) -- (a32);
-    \node[action, below right=0cm and 1cm of c2] (a33) {$5$};
+    \node[action, below right=0cm and 1cm of c2] (a33) {$3$};
     \draw[->] (c2) -- (a33);
     \draw[->] (d2) -- (a33);
     % Layer 3 = n
@@ -381,20 +381,20 @@
     \draw[->] (a2) -- (a3);
     \node[state, above right=0cm and 1 of a32] (b3) {$0$};
     \draw[->] (b2) -- (b3);
-    \node[state, below=of b3] (c3) {$3$};
+    \node[state, below=of b3] (c3) {$1$};
     \draw[->] (a31) -- (c3);
     \draw[->] (c2) -- (c3);
-    \node[state, below=of c3] (d3) {$3$};
+    \node[state, below=of c3] (d3) {$1$};
     \draw[->] (a32) -- (d3);
     \draw[->] (d2) -- (d3);
-    \node[state, draw=green, below=of d3] (e3) {$8$};
+    \node[state, draw=green, below=of d3] (e3) {$3$};
     \draw[->] (a33) -- (e3);
     \draw[->, green] (e2) -- (e3);
-    \node[state, draw=green, below=of e3] (f3) {$8$};
+    \node[state, draw=green, below=of e3] (f3) {$3$};
     \draw[->] (a33) -- (f3);
     \draw[->, green] (f2) -- (f3);
     % goal node
-    \node[goal, draw=green, below right=0cm and 1cm of e3] (g) {$16$};
+    \node[goal, draw=green, below right=0cm and 1cm of e3] (g) {$6$};
     \draw[->, green] (e3) -- (g);
     \draw[->, green] (f3) -- (g);
     % Labels action nodes
