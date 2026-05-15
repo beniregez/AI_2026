@@ -26,7 +26,11 @@
 \usepackage{chessfss} % contained in debian package texlive-games
 
 \usepackage{listings}   % include & display python code
+
 \usepackage[edges]{forest}  % for search trees
+
+\usepackage{algorithm} % for algorithms
+\usepackage{algpseudocode} % for algorithms of pseudocode
 
 \tikzset{WhiteSquare/.style = {shape=rectangle, minimum width=28, minimum
     height=28, anchor=south west}}
@@ -42,6 +46,26 @@
 %% Page style that uses the header
 \pagestyle{fancy}
 
+%% Triangle node definitions (tikzpicture)
+\tikzset{
+    triangleup/.style={
+        regular polygon,
+        regular polygon sides=3,
+        draw,
+        shape border rotate=0,
+        align=center,
+        minimum size=8mm
+    },
+    triangledown/.style={
+        regular polygon,
+        regular polygon sides=3,
+        draw,
+        shape border rotate=180,
+        align=center,
+        minimum size=8mm
+    }
+}
+
 \newcommand{\authorname}{Benjamin Regez\\Luis Tritschler}
 \newcommand{\semester}{Spring Semester 2026}
 \newcommand{\course}{Foundations of Artificial Intelligence}
@@ -53,13 +77,199 @@
 \begin{document}
 
 \section{}
+\begin{enumerate}[(a)]
+    \item $\mathcal{S} = \langle S, A, T, s_I, S_G,
+    \textit{utility}, \textit{player} \rangle$ with
+    \begin{itemize}
+        \item $S = \{
+            \langle c_1, c_2 \rangle ^k \mid
+            c_1 \in \{ 0, 1, 2 \}, \
+            c_2 \in \{ 0, 1 \}, \
+            k \in \mathbb{N}_0
+        \}$ 
+        \item $A = $ \{remove, empty1, empty2\}
+        \item For $k \in \mathbb{N}_0$, $i \in \{ 1, 2 \}$,
+        $j \in \{ 0, 1 \}$, $m \in \{ 0, 1, 2 \}$:
+        \begin{itemize}
+            \item $\langle
+                \langle 2, 1 \rangle^k, \text{remove},
+                \langle 1, 1 \rangle^{k+1}
+            \rangle \in T$
+            \item $\langle
+                \langle i, j \rangle^k, \text{empty1},
+                \langle 0, j \rangle^{k+1}
+            \rangle \in T$
+            \item $\langle
+                \langle m, 1 \rangle^k, \text{empty2},
+                \langle m, 0 \rangle^{k+1}
+            \rangle \in T$
+        \end{itemize} 
+        \item $s_I = \langle 2, 1 \rangle^0$ 
+        \item $S_G = \{ \langle 0, 0 \rangle^k \mid k \in \mathbb{N}_0 \}$
+        \item $\textit{utility}(s^k) = 1 \ \forall s^k \in S_G$ if $k$ odd and\\
+        $\textit{utility}(s^k) = -1 \ \forall s^k \in S_G$ otherwise
+        \item $\textit{player} (s^k) = $ MAX if $k$ even and\\
+        $\textit{player} (s^k) = $ MIN otherwise
+    \end{itemize}
+    \item Game tree:
+    \begin{center}
+    \begin{tikzpicture}[
+        level distance=25mm,
+        sibling distance=20mm,
+        every node/.style = {
+            rectangle, rounded corners,
+            draw, align=center,
+            top color=white, bottom color=white!20
+        },
+        edge from parent/.style={draw,-latex},
+        level 1/.style={sibling distance=50mm},
+        level 2/.style={
+            sibling distance=35mm,
+            level distance=40mm
+        },
+        level 3/.style={
+            sibling distance=15mm,
+            level distance=25mm
+        },
+        level 4/.style={sibling distance=5mm},
+    ]
+    \node[triangleup] (root) {$\langle 2, 1 \rangle$}
+        child {
+            node[triangledown] (a1){$\langle 1, 1 \rangle$}
+            child { node[triangleup] (b1){$\langle 0, 1 \rangle$}
+                child { node[accepting, circle] (c1){\color{red} 1}
+                edge from parent node[draw=none] {empty2}
+                }
+            edge from parent node[draw=none] {empty1}
+            }
+            child { node[triangleup] (b2){$\langle 1, 0 \rangle$}
+                child { node[accepting, circle] (c2){\color{red} 1}
+                edge from parent node[draw=none] {empty1}
+                }
+            edge from parent node[draw=none] {empty2}
+            }
+            edge from parent node[draw=none] {remove}
+        }
+        child {
+            node[triangledown] (a2){$\langle 0, 1 \rangle$}
+                child { node[accepting, circle] (c3){\color{red} -1}
+                edge from parent node[draw=none] {empty2}
+                }
+            edge from parent node[draw=none] {empty1}
+        }
+        child {
+            node[triangledown] (a3){$\langle 2, 0 \rangle$}
+                child { node[accepting, circle] (c3){\color{red} -1}
+                edge from parent node[draw=none] {empty1}
+                }
+            edge from parent node[draw=none] {empty2}
+        };
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
+
 
 \section{}
+\begin{enumerate}[(a)]
+    \item Minimax on $T$:
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.99\linewidth]{assets/11_2_a.jpg}
+    \end{figure}
+    \item If both players play optimally, the obtained value will
+    be 7 (see root node).
+    The following plan will be chosen:
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.99\linewidth]{assets/11_2_b.jpg}
+    \end{figure}
+    \item Alpha-beta on $T$: (red-marked subtrees are the pruned ones)
+    \begin{center}
+        \includegraphics[width=0.99\linewidth]{assets/11_2_c.jpg}
+    \end{center}
+    \item Alpha-beta considers 34 nodes, while minimax considers all 44 nodes.
+    The utilities and best move are exactly the same. The values are garunteed to be same,
+    since alpha-beta search does only \emph{not} consider a subtree, 
+    if it already would \emph{not} have been considered by the player who's turn it is
+    (under optimal play). Also, since bot Algorithms yield optimal strategy under optimal play (according to the slides).
+    The only difference are the considered nodes and therefore the computation effort.
+\end{enumerate}
 
 \section{}
+The dice game is comparable to Blackjack with dice, instead of cards. Each player rolls a dice in alternating order. 
+The goal is to score, in sum, a higher score than the opponent, but to not score over 21.
+On each turn the players score gets added by the number of the rolled dice.
+If a player scores over 21 he cannot roll the dice anymore and the other player can stop 
+or roll the dice until he also scores over 21. A player wins (and the other looses) if
+he stops before his score is over 21 and the other player's score is over 21 or lower than the first player's score.
+The players draw if both players' score over 21.
 
 \section{}
+\begin{algorithm}
+\caption{ExpectiMinimax}
+\begin{algorithmic}[1]
+\Function{ExpectiMinimax}{$p$}
+    \If{$p$ is terminal}
+        \State \Return $\langle utility(p), \text{none} \rangle$
+    \EndIf
+    \State $best\_move := \text{none}$
+    \If{$player(p) = MAX$}
+        \State $v := -\infty$
+    \Else
+        \State $v := \infty$
+    \EndIf
+    \ForAll{$\langle move, p' \rangle \in \Call{Applicable}{p}$}
+        \State $\langle v', best\_move' \rangle := \Call{ExpectiMinimax}{p'}$
+        \State $v' = v + v' * T(p,move,p') \in \Call{Prob}{p,move}$
+        \If{$(player(p)= \text{MAX} \land v' > v)$
+             \textbf{or}
+             $(player(p)=\text{MIN} \land v' < v)$}
+            \State $v := v'$
+            \State $best\_move := move$
+        \EndIf
+    \EndFor
+    \State \Return $\langle v, best\_move \rangle$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{algorithm}
+\caption{Original Minimax from Slides}
+\begin{algorithmic}[2]
+\Function{Minimax}{$p$}
+    \If{$p$ is terminal}
+        \State \Return $\langle utility(p), \text{none} \rangle$
+    \EndIf
+    \State $best\_move := \text{none}$
+    \If{$player(p) = MAX$}
+        \State $v := -\infty$
+    \Else
+        \State $v := \infty$
+    \EndIf
+    \ForAll{$\langle move, p' \rangle \in succ(p)$}
+        \State $\langle v', best\_move' \rangle := \Call{Minimax}{p'}$
+        \If{$(player(p)=MAX \land v' > v)$
+             \textbf{or}
+             $(player(p)=MIN \land v' < v)$}
+            \State $v := v'$
+            \State $best\_move := move$
+        \EndIf
+    \EndFor
+    \State \Return $\langle v, best\_move \rangle$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
 
 \section*{Statement on scientific integrity}
+\begin{itemize}
+    \item ChatGPT was asked for help with the definition of
+    triangle nodes and the level distances in the game tree in 1(b)
+    \item ChatGPT was used to convert the pseudocode of the Minimax algorithm into a latex friendly format for Task 4
+\end{itemize}
+Apart from that, we solved all exercises on our own.
 
 \end{document}
