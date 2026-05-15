@@ -26,7 +26,11 @@
 \usepackage{chessfss} % contained in debian package texlive-games
 
 \usepackage{listings}   % include & display python code
+
 \usepackage[edges]{forest}  % for search trees
+
+\usepackage{algorithm} % for algorithms
+\usepackage{algpseudocode} % for algorithms of pseudocode
 
 \tikzset{WhiteSquare/.style = {shape=rectangle, minimum width=28, minimum
     height=28, anchor=south west}}
@@ -179,18 +183,92 @@
         \centering
         \includegraphics[width=0.99\linewidth]{assets/11_2_b.jpg}
     \end{figure}
-    \item TODO
-    \item TODO
+    \item Alpha-beta on $T$: (red-marked subtrees are the pruned ones)
+    \begin{center}
+        \includegraphics[width=0.99\linewidth]{assets/11_2_c.jpg}
+    \end{center}
+    \item Alpha-beta considers 34 nodes, while minimax considers all 44 nodes.
+    The utilities and best move are exactly the same. The values are garunteed to be same,
+    since alpha-beta search does only \emph{not} consider a subtree, 
+    if it already would \emph{not} have been considered by the player who's turn it is
+    (under optimal play). Also, since bot Algorithms yield optimal strategy under optimal play (according to the slides).
+    The only difference are the considered nodes and therefore the computation effort.
 \end{enumerate}
 
 \section{}
+The dice game is comparable to Blackjack with dice, instead of cards. Each player rolls a dice in alternating order. 
+The goal is to score, in sum, a higher score than the opponent, but to not score over 21.
+On each turn the players score gets added by the number of the rolled dice.
+If a player scores over 21 he cannot roll the dice anymore and the other player can stop 
+or roll the dice until he also scores over 21. A player wins (and the other looses) if
+he stops before his score is over 21 and the other player's score is over 21 or lower than the first player's score.
+The players draw if both players' score over 21.
 
 \section{}
+\begin{algorithm}
+\caption{ExpectiMinimax}
+\begin{algorithmic}[1]
+\Function{ExpectiMinimax}{$p$}
+    \If{$p$ is terminal}
+        \State \Return $\langle utility(p), \text{none} \rangle$
+    \EndIf
+    \State $best\_move := \text{none}$
+    \If{$player(p) = MAX$}
+        \State $v := -\infty$
+    \Else
+        \State $v := \infty$
+    \EndIf
+    \ForAll{$\langle move, p' \rangle \in \Call{Applicable}{p}$}
+        \State $\langle v', best\_move' \rangle := \Call{ExpectiMinimax}{p'}$
+        \State $v' = v + v' * T(p,move,p') \in \Call{Prob}{p,move}$
+        \If{$(player(p)= \text{MAX} \land v' > v)$
+             \textbf{or}
+             $(player(p)=\text{MIN} \land v' < v)$}
+            \State $v := v'$
+            \State $best\_move := move$
+        \EndIf
+    \EndFor
+    \State \Return $\langle v, best\_move \rangle$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{algorithm}
+\caption{Original Minimax from Slides}
+\begin{algorithmic}[2]
+\Function{Minimax}{$p$}
+    \If{$p$ is terminal}
+        \State \Return $\langle utility(p), \text{none} \rangle$
+    \EndIf
+    \State $best\_move := \text{none}$
+    \If{$player(p) = MAX$}
+        \State $v := -\infty$
+    \Else
+        \State $v := \infty$
+    \EndIf
+    \ForAll{$\langle move, p' \rangle \in succ(p)$}
+        \State $\langle v', best\_move' \rangle := \Call{Minimax}{p'}$
+        \If{$(player(p)=MAX \land v' > v)$
+             \textbf{or}
+             $(player(p)=MIN \land v' < v)$}
+            \State $v := v'$
+            \State $best\_move := move$
+        \EndIf
+    \EndFor
+    \State \Return $\langle v, best\_move \rangle$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
 
 \section*{Statement on scientific integrity}
 \begin{itemize}
     \item ChatGPT was asked for help with the definition of
     triangle nodes and the level distances in the game tree in 1(b)
+    \item ChatGPT was used to convert the pseudocode of the Minimax algorithm into a latex friendly format for Task 4
 \end{itemize}
 Apart from that, we solved all exercises on our own.
 
