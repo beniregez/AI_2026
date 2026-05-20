@@ -198,6 +198,18 @@
 \section{}
 
 \section*{Statement on scientific integrity}
-
+\begin{enumerate}[(a)]
+    \item With $\epsilon$-greedy we can only get a chance of
+    0.5 to reach the subtree of $n_3$, namely with $\epsilon
+    = 1$. With softmax policy, none of the children will get
+    the probability of 1. The same holds for UCB1.\\
+    Furthermore, even if we could come up with a policy
+    that guarantees that $n_3$ is chosen in the next iteration,
+    $n_3$ still has nodes to be expanded, so the node marked
+    in grey won't be chosen anyway.
+    \item TODO
+    \item TODO
+    \item TODO
+\end{enumerate}
 
 \end{document}
