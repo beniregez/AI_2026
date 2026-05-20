@@ -205,9 +205,34 @@
     that guarantees that $n_3$ is chosen in the next iteration,
     $n_3$ still has nodes to be expanded, so the node marked
     in grey won't be chosen anyway.
-    \item TODO
-    \item TODO
-    \item TODO
+    \item $\epsilon = 0.2 \ \implies \ 1 - \epsilon = 0.8$\\
+    $\mathbb{P}(n_1) = 0.8$, 
+    $\mathbb{P}(n_2) = 0.1$, 
+    $\mathbb{P}(n_3) = 0.1$
+    \item Probabilities to choose $n_1$, $n_2$ or $n_3$ using
+    softmax tree policy with $\tau$ = 10:
+    \begin{enumerate}[]
+        \item $n_1$: $e^{8/10} \approx 2.226$
+        \item $n_2$: $e^{3/10} \approx 1.350$
+        \item $n_3$: $e^{6/10} \approx 1.822$
+        \item $\implies \Sigma_{i=1}^3 n_i = 5.398$
+        \item $\mathbb{P}(n_1) = \frac{2.226}{5.398} \approx \underline{0.412}$
+        \item $\mathbb{P}(n_2) = \frac{1.350}{5.398} \approx \underline{0.250}$
+        \item $\mathbb{P}(n_3) = \frac{1.822}{5.398} \approx \underline{0.338}$
+    \end{enumerate}
+    \item Probabilities to choose $n_1$, $n_2$ or $n_3$ using
+    UCB1 tree policy:
+    \begin{enumerate}[]
+        \item $n_1$: B$(n_1) = \sqrt{\frac{2 \cdot \ln(9)}{6}} \approx 0.856$ 
+        $\implies 8 + 0.856 = \color{blue}8.856\color{black}$
+        \item $n_2$: B$(n_2) = \sqrt{\frac{2 \cdot \ln(9)}{1}} \approx 2.096$ 
+        $\implies 3 + 2.096 = 5.096$
+        \item $n_3$: B$(n_3) = \sqrt{\frac{2 \cdot \ln(9)}{2}} \approx 1.482$ 
+        $\implies 6 + 1.482 = 7.482$
+        \item $n_1$ maximizes, so it gets chosen as best move.
+        \item $\implies \mathbb{P}(n_1) = 1, \ \mathbb{P}(n_2) = 0, \
+        \mathbb{P}(n_3) = 0$
+    \end{enumerate}
 \end{enumerate}
 
 \section*{Statement on scientific integrity}
