@@ -77,7 +77,124 @@
 \begin{document}
 
 \section{}
+\begin{enumerate}
+    \item iteration:
+    \begin{center}
+        \begin{tikzpicture}[
+        every node/.style = {
+            rectangle, rounded corners,
+            draw, align=center,
+            top color=white, bottom color=white!20
+        }]
+        \node[triangleup, align=center] (root) {\scriptsize 1\\14};
+        \node[triangledown, align=center, below right=0.5cm and 2cm of root] (c2) {};
+        \draw[->, dashed] (root) to (c2);
+        \node[triangleup, align=center, below right=0.5cm and 1.5cm of c2] (c22) {};
+        \draw[->, dashed] (c2) to (c22);
+        \node[triangledown, align=center, below right=0.5cm and 1cm of c22] (c222) {};
+        \draw[->, dashed] (c22) to (c222);
+        \node[draw=blue, circle, accepting, align=center, below right=0.5cm and 0.5cm of c222] (c2222) {\color{blue}14};
+        \draw[->, dashed] (c222) to (c2222);
+        \end{tikzpicture}
+    \end{center}
+    \item iteration:
+    \begin{center}
+        \begin{tikzpicture}[
+        every node/.style = {
+            rectangle, rounded corners,
+            draw, align=center,
+            top color=white, bottom color=white!20
+        }]
+        \node[triangleup, align=center] (root) {\scriptsize 2\\15};
+        % right subtree
+        \node[triangledown, align=center, below right=0.5cm and 2cm of root] (c2) {};
+        \draw[->, dashed] (root) to (c2);
+        \node[triangleup, align=center, below right=0.5cm and 1.5cm of c2] (c22) {};
+        \draw[->, dashed] (c2) to (c22);
+        \node[triangledown, align=center, below right=0.5cm and 1cm of c22] (c222) {};
+        \draw[->, dashed] (c22) to (c222);
+        \node[circle, accepting, align=center, below right=0.5cm and 0.5cm of c222] (c2222) {14};
+        \draw[->, dashed] (c222) to (c2222);
+        % left subtree
+        \node[triangledown, align=center, below left=0.5cm and 2cm of root] (c1) {16\\ \scriptsize 1};
+        \draw[->] (root) to (c1);
+        \node[triangleup, align=center, below right=0.5cm and 1.5cm of c1] (c12) {};
+        \draw[->, dashed] (c1) to (c12);
+        \node[triangledown, align=center, below right=0.5cm and 1cm of c12] (c122) {};
+        \draw[->, dashed] (c12) to (c122);
+        \node[circle, draw=blue, accepting, align=center, below right=0.5cm and 0.5cm of c122] (c1222) {\color{blue}16};
+        \draw[->, dashed] (c122) to (c1222);
+        \end{tikzpicture}
+    \end{center}
+    \newpage
+    \item iteration:
+    \begin{center}
+        \begin{tikzpicture}[
+        every node/.style = {
+            rectangle, rounded corners,
+            draw, align=center,
+            top color=white, bottom color=white!20
+        }]
+        \node[triangleup, align=center] (root) {\scriptsize 3\\$14.\overline{6}$};
+        % right subtree
+        \node[triangledown, align=center, below right=0.5cm and 2cm of root] (c2) {14\\ \scriptsize 1};
+        \draw[->] (root) to (c2);
+        \node[triangleup, align=center, below right=0.5cm and 1.5cm of c2] (c22) {};
+        \draw[->, dashed] (c2) to (c22);
+        \node[triangledown, align=center, below right=0.5cm and 1cm of c22] (c222) {};
+        \draw[->, dashed] (c22) to (c222);
+        \node[circle, draw=blue, accepting, align=center, below right=0.5cm and 0.5cm of c222] (c2222) {\color{blue}14};
+        \draw[->, dashed] (c222) to (c2222);
+        % left subtree
+        \node[triangledown, align=center, below left=0.5cm and 2cm of root] (c1) {16\\ \scriptsize 1};
+        \draw[->] (root) to (c1);
+        \node[triangleup, align=center, below right=0.5cm and 1.5cm of c1] (c12) {};
+        \draw[->, dashed] (c1) to (c12);
+        \node[triangledown, align=center, below right=0.5cm and 1cm of c12] (c122) {};
+        \draw[->, dashed] (c12) to (c122);
+        \node[circle, accepting, align=center, below right=0.5cm and 0.5cm of c122] (c1222) {16};
+        \draw[->, dashed] (c122) to (c1222);
+        \end{tikzpicture}
+    \end{center}
+    \item iteration:
+    \begin{center}
+        \begin{tikzpicture}[
+        every node/.style = {
+            rectangle, rounded corners,
+            draw, align=center,
+            top color=white, bottom color=white!20
+        }]
+        \node[triangleup, align=center] (root) {\scriptsize 4\\$12.5$};
+        % right subtree
+        \node[triangledown, align=center, below right=0.5cm and 2cm of root] (c2) {14\\ \scriptsize 1};
+        \draw[->] (root) to (c2);
+        \node[triangleup, align=center, below right=0.5cm and 1.5cm of c2] (c22) {};
+        \draw[->, dashed] (c2) to (c22);
+        \node[triangledown, align=center, below right=0.5cm and 1cm of c22] (c222) {};
+        \draw[->, dashed] (c22) to (c222);
+        \node[circle, accepting, align=center, below right=0.5cm and 0.5cm of c222] (c2222) {14};
+        \draw[->, dashed] (c222) to (c2222);
+        % left subtree
+        \node[triangledown, align=center, below left=0.5cm and 2cm of root] (c1) {11\\ \scriptsize 2};
+        \draw[->] (root) to (c1);
+        \node[triangleup, align=center, below right=0.5cm and 1.5cm of c1] (c12) {};
+        \draw[->, dashed] (c1) to (c12);
+        \node[triangledown, align=center, below right=0.5cm and 1cm of c12] (c122) {};
+        \draw[->, dashed] (c12) to (c122);
+        \node[circle, accepting, align=center, below right=0.5cm and 0.5cm of c122] (c1222) {16};
+        \draw[->, dashed] (c122) to (c1222);
+        % left-left subtree
+        \node[triangleup, align=center, below left=0.5cm and 1cm of c1] (c11) {\scriptsize 1\\6};
+        \draw[->] (c1) to (c11);
+        \node[triangledown, align=center, below right=0.5cm and 1cm of c11] (c112) {};
+        \draw[->, dashed] (c11) to (c112);
+        \node[circle, draw=blue, accepting, align=center, below right=0.5cm and 0.5cm of c112] (c1122) {\color{blue}6};
+        \draw[->, dashed] (c112) to (c1122);
+        \end{tikzpicture}
+    \end{center}
+\end{enumerate}
 
+\newpage
 \section{}
 
 \section*{Statement on scientific integrity}
